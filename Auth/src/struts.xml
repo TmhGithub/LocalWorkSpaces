@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <package name="com.cissst.auth" extends="struts-default">
+     <action name="*_user" class="userAction" method="{1}">
+        <result name="home">/frames/frame.jsp</result>
+     </action>
+     
+     <action name="*_ro" class="roAction" method="{1}">
+        
+     </action>
+     
+     
+      <action name="*_ac" class="acAction" method="{1}">
+         
+     </action>
+  </package>
+</struts>    
