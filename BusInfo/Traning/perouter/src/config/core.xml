@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+
+	<messageSource>
+		<param name="basenames">classpath:/config/msg/messages,classpath:/config/msg/dictionary</param>
+		<param name="cacheSeconds">10</param>
+		<param name="fallbackToSystemLocale">false</param>
+		<param name="defaultEncoding">UTF-8</param>
+	</messageSource>
+
+	<!-- CoreController  -->
+	<coreController id="coreController" class="com.csii.pe.core.CoreControllerImpl" ></coreController>
+
+	<!-- Chains  -->
+	<chain id="defaultChain">
+		<commands>
+			<ref>delegateCommand</ref>
+		</commands>
+	</chain>
+
+
+	<!-- Commands of chains  -->
+	<command id="delegateCommand" class="com.csii.pe.chain.command.DelegateCommand" />
+    
+	<!-- Templates  -->
+	<template id="emptytemplate" class="com.csii.pe.template.EmptyTemplate" chain="defaultChain"/>
+	<template id="defaultTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="defaultChain"/>
+
+	<bean id="ibsTrsAgent" class="com.csii.ibs.IbsTrsAgent"/>
+
+	<bean id="generalAwareProcessor" class="com.csii.pe.config.support.GeneralAwareProcessor">
+		<map name="services">
+		   <ref name="idFactory">idFactory</ref>
+		   <ref name="ibsTrsAgent">ibsTrsAgent</ref>
+		   <ref name="simTransport">simTransport</ref>
+		</map>
+	</bean>
+	
+</config>

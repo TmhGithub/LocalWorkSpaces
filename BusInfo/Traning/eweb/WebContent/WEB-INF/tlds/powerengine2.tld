@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+	<tlib-version>1.0</tlib-version>
+
+	<jsp-version>1.2</jsp-version>
+
+	<short-name>PowerEngine</short-name>
+
+	<uri>http://www.csii.com.cn/tags</uri>
+
+	<description>PowerEngine Framework JSP Tag Library.</description>
+
+
+
+	<tag>
+		<name>size</name>
+		<tag-class>com.csii.pe.channel.http.tag.SizeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>pageId</name>
+		<tag-class>com.csii.pe.channel.http.tag.PageIdTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+		</attribute>
+	</tag>
+
+
+	<tag>
+		<name>token</name>
+		<tag-class>com.csii.pe.channel.http.tag.TokenTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>tokenName</name>
+		</attribute>
+		<attribute>
+			<name>tokenListName</name>
+		</attribute>
+		<attribute>
+			<name>maxEntryNumber</name>
+		</attribute>
+		<attribute>
+			<name>delayTime</name>
+		</attribute>
+		<attribute>
+			<name>tokenManager</name>
+		</attribute>
+	
+		
+	</tag>
+
+
+	<tag>
+		<name>saveItem</name>
+		<tag-class>com.csii.pe.channel.http.tag.SaveItemTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>value</name>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>save</name>
+		<tag-class>com.csii.pe.channel.http.tag.SaveTag</tag-class>
+		<body-content>JSP</body-content>
+
+	</tag>
+	
+   <tag>
+		<name>saveMap</name>
+		<tag-class>com.csii.pe.channel.http.tag.SaveMapTag</tag-class>
+		<body-content>JSP</body-content>
+		<!-- save data to session? default:false-->
+		<attribute>
+			<name>usingSession</name>
+		</attribute>
+
+		<!-- a list of fields' name to save -->
+		<attribute>
+			<name>fieldList</name>
+		</attribute>
+
+	</tag>	
+	
+   <tag>
+		<name>hiddenData</name>
+		<tag-class>com.csii.pe.channel.http.tag.HiddenDataTag</tag-class>
+		<body-content>JSP</body-content>
+		<!-- save data to session? default:false-->
+		<attribute>
+			<name>usingSession</name>
+		</attribute>
+		<attribute>
+			<name>withInputTag</name>
+		</attribute>
+
+		
+
+	</tag>	
+	
+
+	<tag>
+		<name>checked</name>
+		<tag-class>com.csii.pe.channel.http.tag.CheckedTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>selected</name>
+		<tag-class>com.csii.pe.channel.http.tag.SelectedTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>option</name>
+		<tag-class>com.csii.pe.channel.http.tag.OptionTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>itemsName</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>items</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>optionName</name>
+		</attribute>
+		<attribute>
+			<name>optionValue</name>
+		</attribute>
+		<attribute>
+			<name>constantPrefix</name>
+		</attribute>
+
+		<attribute>
+			<name>currentValue</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>delimeter</name>
+		</attribute>
+		
+	    <attribute>
+			<name>condition</name>
+		</attribute>		
+		
+
+	</tag>
+
+
+	<tag>
+		<name>checkbox</name>
+		<tag-class>com.csii.pe.channel.http.tag.CheckBoxTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>fieldName</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>itemsName</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>items</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>optionName</name>
+		</attribute>
+		<attribute>
+			<name>optionValue</name>
+		</attribute>
+		<attribute>
+			<name>constantPrefix</name>
+		</attribute>
+
+		<attribute>
+			<name>currentValue</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>prefix</name>
+		</attribute>
+		<attribute>
+			<name>suffix</name>
+		</attribute>
+		<attribute>
+			<name>script</name>
+		</attribute>
+		<attribute>
+			<name>defaultValue</name>
+		</attribute>
+		
+		<attribute>
+			<name>delimeter</name>
+		</attribute>
+		
+	    <attribute>
+			<name>condition</name>
+		</attribute>		
+		
+		
+
+	</tag>
+
+	<tag>
+		<name>radio</name>
+		<tag-class>com.csii.pe.channel.http.tag.RadioTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>fieldName</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>itemsName</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>items</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>optionName</name>
+		</attribute>
+		<attribute>
+			<name>optionValue</name>
+		</attribute>
+		<attribute>
+			<name>constantPrefix</name>
+		</attribute>
+
+		<attribute>
+			<name>currentValue</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>prefix</name>
+		</attribute>
+		<attribute>
+			<name>suffix</name>
+		</attribute>
+		<attribute>
+			<name>script</name>
+		</attribute>
+		<attribute>
+			<name>defaultValue</name>
+		</attribute>
+		
+		<attribute>
+			<name>delimeter</name>
+		</attribute>
+		
+	    <attribute>
+			<name>condition</name>
+		</attribute>		
+		
+		
+
+	</tag>
+
+	<tag>
+		<name>message</name>
+		<tag-class>com.csii.pe.channel.http.tag.MessageTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>key</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>nameSpace</name>
+			<rtexprvalue>true</rtexprvalue>						
+		</attribute>
+
+	</tag>
+	
+	<tag>
+		<name>out</name>
+		<tag-class>com.csii.pe.channel.http.tag.OutputTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>format</name>
+		</attribute>
+
+	</tag>
+	
+	<tag>
+		<name>dummyKeyPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.DummyKeyPageTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>dummyKeyName</name>
+		</attribute>
+		<attribute>
+			<name>dummyKeyValue</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>filler</name>
+		</attribute>
+		
+	</tag>
+
+
+	<tag>
+		<name>dummyKeyPageNo</name>
+		<tag-class>com.csii.pe.channel.http.tag.DummyKeyPageNoTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>combinedDummyKeyPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.CombinedDummyKeyPageTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>dummyKeyName</name>
+		</attribute>
+		<attribute>
+			<name>dummyKeyValue</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+		</attribute>		
+	</tag>
+
+
+	<tag>
+		<name>cDummyKeyPageNo</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.DummyKeyPageNoTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+
+	<tag>
+		<name>dummyKeyPrevPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.DummyKeyPrevPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _DummyKeyPageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 上一页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+		
+	</tag>
+
+	<tag>
+		<name>dummyKeyNextPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.DummyKeyNextPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _DummyKeyPageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 下一页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+		
+	</tag>	
+	
+	<!-- 
+	Fields that will be sent to Web App:
+	  currentIndex        begin position
+	  pageSize            size of per page
+    example:
+	  &lt;pe:indexPage total="${Total}" &gt;
+	  
+	${Total}            total record number
+	-->
+	<tag>
+		<name>indexPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.IndexPageTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>total</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>defaultPageSize</name>
+		</attribute>
+		<attribute>
+			<name>filler</name>
+		</attribute>
+		
+	</tag>
+
+
+	<tag>
+		<name>indexPageNo</name>
+		<tag-class>com.csii.pe.channel.http.tag.IndexPageNoTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>defaultPageSize</name>
+		</attribute>
+		
+	</tag>
+	
+
+	<tag>
+		<name>instanceof</name>
+		<tag-class>com.csii.pe.channel.http.tag.InstanceofTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>className</name>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+		</attribute>
+
+	</tag>
+
+	<!-- 
+	 render body if the assigned role or any its members is implied by the role of current User.
+
+    example:
+
+	  &lt;pe:menufilter role="Query" &gt;
+	   Query-> 
+	  &lt;pe:menufilter role="QueryBalance" &gt;
+	    QueryBlance
+  	  &lt;/pe:menufilter &gt;
+	  &lt;pe:menufilter role="QueryDetail" &gt;
+	    QueryDetail
+  	  &lt;/pe:menufilter &gt;
+	   End of Query
+	  &lt;/pe:menufilter &gt;
+	  
+	  &lt;pe:menufilter role="Transfer" &gt;
+	    Transfer->
+	  &lt;pe:menufilter role="InnerTransfer" &gt;
+	    InnerTransfer
+  	  &lt;/pe:menufilter &gt;
+	  &lt;pe:menufilter role="InnerBankTransfer" &gt;
+	    InnerBankTransfer
+  	  &lt;/pe:menufilter &gt;
+	   End of Transfer	  	  
+	  &lt;/pe:menufilter &gt;
+
+	-->
+
+	<tag>
+		<name>menufilter</name>
+		<tag-class>com.csii.pe.channel.http.tag.MenuFilterTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>role</name>
+		</attribute>
+		<attribute>
+			<name>rolePool</name>
+		</attribute>
+		<attribute>
+			<name>var</name>
+		</attribute>
+
+	</tag>
+	
+
+	<tag>
+		<name>push</name>
+		<tag-class>com.csii.pe.channel.http.tag.PushTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>			
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>pop</name>
+		<tag-class>com.csii.pe.channel.http.tag.PopTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>var</name>
+		</attribute>
+
+	</tag>
+	
+	<tag>
+		<name>CSIIDigitalSignature</name>
+		<tag-class>com.csii.pe.channel.http.tag.CSIIDigitalSignatureTag</tag-class>
+		<body-content>JSP</body-content>
+
+	</tag>	
+	
+	<!-- 
+	Fields that will be sent to Web App:
+	  currentIndex        begin position
+	  recordNumber        total record number(to keep total record number for database query)
+    example:
+	  &lt;pe:combinedPage total="${recordNumber}"  &gt;
+	  
+	-->
+	<tag>
+		<name>combinedPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.CombinedPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- create javascript or not -->
+		<attribute>
+			<name>script</name>
+		</attribute>
+
+		<!-- if pageNo is not valid, alert alertMessage -->
+		<attribute>
+			<name>alertMessage</name>
+		</attribute>
+
+        <!-- using assigned action to generate the action of the form -->
+		<attribute>
+			<name>action</name>
+		</attribute>
+		
+		<!-- set EL expression for total record number  for example: ${recordNumber} -->
+		<attribute>
+			<name>total</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>true</required>
+		</attribute>
+		<!-- set EL expression for page size, for examplet: ${pageSize} , if can't get pageSize then use defaultPageSize -->		
+		<attribute>
+			<name>pageSize</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>true</required>
+
+		</attribute>
+
+		<!-- set name for page bean, default: _PageBean 
+		
+		page bean properties:
+		{
+		 int recordNumber;
+		 int pageSize;
+		 int pageNumber;
+		 int pageNo;	
+		 boolean prevPageEnable;
+		 int prevPageIndex;
+		 boolean nextPageEnable;
+		 int nextPageIndex;
+		 }
+		
+		-->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+        <!-- set default page size, default: 10 -->					
+		<attribute>
+			<name>defaultPageSize</name>
+		</attribute>
+        <!-- set hidden field name for current index, default: "currentIndex" -->							
+		<attribute>
+			<name>hiddenFieldName</name>
+		</attribute>
+        <!-- set hidden field name for total record number, default: "recordNumber" -->									
+		<attribute>
+			<name>hiddenTotalFieldName</name>
+		</attribute>
+		
+		
+	</tag>
+
+	<tag>
+		<name>TopPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.TopPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 首 页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>BottomPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.BottomPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 尾 页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+		
+	</tag>
+
+	<tag>
+		<name>PrevPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.PrevPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 上一页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+		
+	</tag>
+	
+	<tag>
+		<name>NextPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.NextPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 2: create link and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		<!-- value  default: 下一页-->				
+		<attribute>
+			<name>value</name>
+		</attribute>
+		
+	</tag>	
+
+	<tag>
+		<name>GotoPage</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.GotoPageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>
+		
+		<!-- set Goto input field's name fo bean, default: GotoField -->				
+		<attribute>
+			<name>fieldName</name>
+		</attribute>
+		
+		<!-- type
+		 0: only create onclick (default)
+		 1: create button and onclick
+		 -->				
+		<attribute>
+			<name>type</name>
+		</attribute>
+
+		<!-- insertContent default: ''
+		 insert css to button 
+		 for example: class='button'
+		 -->				
+		<attribute>
+			<name>insertContent</name>
+		</attribute>
+		
+		<!-- insertContent2 default: null
+		 if insertcontent2 is set, then generate input field and  insert insertContent2 to input field.
+		 for example: class='input'
+		 -->				
+		<attribute>
+			<name>insertContent2</name>
+		</attribute>
+		
+		<!-- value  default: Go -->				
+		<attribute>
+			<name>value</name>
+		</attribute>	
+		
+	</tag>		
+	
+	<tag>
+	    <!-- 页号 -->
+		<name>PageNo</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.PageNoTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>		
+	</tag>	
+	<tag>
+	    <!-- 总页数 -->
+		<name>PageNumber</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.PageNumberTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>		
+	</tag>	
+
+	<tag>
+	    <!-- 总记录数 -->
+		<name>RecordNumber</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.RecordNumberTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set name for page bean, default: _PageBean -->				
+		<attribute>
+			<name>var</name>
+		</attribute>		
+	</tag>	
+	
+	<tag>
+
+		<name>a</name>
+		<tag-class>com.csii.pe.channel.http.tag.AnchorTag</tag-class>
+		<body-content>JSP</body-content>
+		<!-- set name for current item,, 
+		     if current item is not a map, then keyName is mandatory 
+		     if current item is a map and fieldList is not set, then include all pairs in map to generate the href
+		      -->				
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>true</required>
+		</attribute>	
+		<!-- set transaction id for current item, for examples: QueryCif  -->						
+		<attribute>
+			<name>trsName</name>
+		</attribute>		
+		<!-- set the list of fields that will be included in href, using commas as delimeter  -->						
+		<attribute>
+			<name>fieldList</name>
+		</attribute>		
+		<!-- set the name of key that will be showed in page, if not set and fieldlist is set, then use the first field of fieldList  -->								
+		<attribute>
+			<name>keyName</name>
+		</attribute>					
+		<!-- set content that will be appended to url  -->										
+		<attribute>
+			<name>append</name>
+		</attribute>					
+		<!--set condition to render the url -->										
+		<attribute>
+			<name>condition</name>
+		</attribute>					
+		
+
+		<!--create onclick for ajax application: default: false -->										
+		<attribute>
+			<name>ajax</name>
+		</attribute>	
+		
+		<!--ajax function: default: post2Server -->										
+		<attribute>
+			<name>ajaxFunction</name>
+		</attribute>	
+						
+		<!--spanId  default: null -->										
+		<attribute>
+			<name>spanId</name>
+		</attribute>					
+		<!--form object : default: null -->										
+		<attribute>
+			<name>form</name>
+		</attribute>					
+		
+		
+	</tag>	
+
+	<tag>
+	  
+		<name>ViewName</name>
+		<tag-class>com.csii.pe.channel.http.tag.ViewNameTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set view name for the page that is forward when 
+		  a ValidationExeption is thrown, default: the view name of current page -->				
+		<attribute>
+			<name>viewName</name>
+		</attribute>		
+	</tag>	
+
+	<tag>
+	  
+		<name>hidden</name>
+		<tag-class>com.csii.pe.channel.http.tag.HiddenTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- set the list of fields that will be included in href, using commas as delimeter  -->								
+		<attribute>
+			<name>fieldList</name>
+		</attribute>		
+		<!-- whether or NULL field should be skipped, default: true  -->								
+		<attribute>
+			<name>skipNULL</name>
+		</attribute>		
+		
+	</tag>	
+
+
+	<tag>
+	  
+		<name>contains</name>
+		<tag-class>com.csii.pe.channel.http.tag.ContainsTag</tag-class>
+		<body-content>JSP</body-content>
+		<!-- EL Expression. set a collection  -->								
+		<attribute>
+			<name>value</name>
+		</attribute>		
+		<!-- set the string to be checked -->								
+		<attribute>
+			<name>contains</name>
+		</attribute>		
+		
+	</tag>	
+	
+	<tag>
+		<name>keepData2Queue</name>
+		<tag-class>com.csii.pe.channel.http.tag.KeepData2QueueTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- default: PageRoot -->										
+		<attribute>
+			<name>queueName</name>
+		</attribute>
+		<!-- set curent page's level -->										
+		<attribute>
+			<name>level</name>
+		</attribute>
+		
+		<!-- if true, reset saved data in the assigned level. default:false -->										
+		<attribute>
+			<name>reset</name>
+		</attribute>
+		
+		<!-- set fields' name to keep -->										
+		<attribute>
+			<name>fieldList</name>
+		</attribute>
+		<!-- set trsName to keep -->										
+		<attribute>
+			<name>trsName</name>
+		</attribute>
+		<!-- constants to keep  sample: name1=value1:name2=value2: -->
+		<attribute>
+			<name>constants</name>
+		</attribute>
+		
+        <!-- default: false. if true, the kept data will be restored to Context when form is submitted -->		
+		<attribute>
+			<name>generateReqData</name>
+		</attribute>
+		<!-- default:currentIndex, if generateReqData is true, the fields in skipFields will not be  restored. -->
+		<attribute>
+			<name>skipFields</name>
+		</attribute>
+		
+		
+		
+	</tag>
+	
+	<tag>
+		<name>goBack</name>
+		<tag-class>com.csii.pe.channel.http.tag.page.GoBackTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- default: PageRoot -->												
+		<attribute>
+			<name>queueName</name>
+		</attribute>
+		<!-- set the level to go -->												
+		<attribute>
+			<name>level</name>
+		</attribute>
+		<!-- set trsName. default: null, using trsName kept in session -->												
+		<attribute>
+			<name>trsName</name>
+		</attribute>
+		<!-- use defaultScript if can't find the assigned level or queue. default: null, throw Exception -->												
+		<attribute>
+			<name>defaultScript</name>
+		</attribute>
+		
+	</tag>
+
+	<tag>
+		<name>error</name>
+		<tag-class>com.csii.pe.channel.http.tag.ErrorTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- default: null -->												
+		<attribute>
+			<name>condition</name>
+		</attribute>
+		<!-- error variable. default:_exceptionMessage -->												
+		<attribute>
+			<name>errorName</name>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>wcss</name>
+		<tag-class>com.csii.pe.channel.http.tag.WCSSTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- clientInfo attribute name . dfeault: _CSIIClientInfo -->												
+		<attribute>
+			<name>clientInfoName</name>
+		</attribute>
+		<!-- cssResourcePool attribute name. default:__CSIICSSResourcePool -->												
+		<attribute>
+			<name>cssResourcePoolName</name>
+		</attribute>
+	</tag>
+
+	
+</taglib>

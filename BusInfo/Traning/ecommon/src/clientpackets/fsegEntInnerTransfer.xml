@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE segment SYSTEM "packet.dtd">
+<segment>
+	<xmlTag><String name="AcNo"></String></xmlTag>
+	<xmlTag><String name="AcNo2"></String></xmlTag>
+	<xmlTag><String name="Amount"></String></xmlTag>
+	<xmlTag><String name="Purpose"></String></xmlTag>		
+</segment>

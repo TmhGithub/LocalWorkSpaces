@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user_per">
+	
+	<!--查询两机构是否属于同一分行-->
+	<resultMap class="java.util.HashMap" id="query2organinfoResult">
+		<result property="OrganId" column="ORGAN_ID" />
+	</resultMap>
+	
+	
+	<select id="query2organinfo" parameterClass="java.util.HashMap" resultMap="query2organinfoResult">
+		select * from ibs_tab_organ where organ_id = #OrganId# 
+		and branch_id in (select branch_id from ibs_tab_organ where organ_id=#FDYNGYJG#)	
+    </select>
+    
+    
+    
+    <!--查询用户信息-->
+	<resultMap class="java.util.HashMap" id="queryuserinfoResult">
+		<result property="UserId" column="USER_ID" />
+		<result property="UserType" column="USER_TYPE" />
+		<result property="UserStatus" column="USER_STATUS" />
+		
+		<result property="CifNo" column="CIF_NO" />
+		
+		<result property="IdType" column="CIF_CERTTYPE" />
+		<result property="IdNo" column="CIF_CERTNO" />
+		<result property="CifName" column="CIF_NAME" />
+		<result property="OpenDate" column="USER_OPENDATE" />
+		<result property="OrganId" column="USER_ORGANID" />
+		<result property="UserCertNo" column="USER_CERTNO" />
+		<result property="TransferFlag" column="USER_TRANSFERFLAG" />
+		<result property="LoginName" column="USER_LOGINNAME" /> 
+		
+	</resultMap>
+	
+	
+	<select id="queryuserinfo" parameterClass="java.util.HashMap" resultMap="queryuserinfoResult">
+		select * from IBS_PTAB_USER a,IBS_PTAB_CIF b where a.CIF_NO = b.CIF_NO
+		and b.CIF_CERTTYPE = #IdType# and b.CIF_CERTNO = #IdNo#
+		<dynamic prepend="AND">
+			<isNotEmpty prepend="AND" property="UserType"> a.USER_TYPE = #UserType#</isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="UserStatus"> a.USER_STATUS &lt;&gt;'2'</isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="UpgradeToCert"> a.USER_TYPE &lt;&gt;'2'</isNotEmpty>
+   		    
+   		 </dynamic>
+    </select>
+    
+    <!--通过客户号查询用户信息-->
+    <select id="queryuserinfobycifno" parameterClass="java.lang.String" resultMap="queryuserinfoResult">
+		select * from IBS_PTAB_USER a,IBS_PTAB_CIF b where a.CIF_NO = b.CIF_NO
+		and a.CIF_NO = #value#
+    </select>
+    
+    
+    <!--通过卡和证件查询用户信息-->
+	<resultMap class="java.util.HashMap" id="queryuserinfowithcardResult">
+		<result property="UserId" column="USER_ID" />
+		<result property="UserType" column="USER_TYPE" />
+		<result property="UserStatus" column="USER_STATUS" />
+		<result property="CifNo" column="CIF_NO" />
+		
+		<result property="IdType" column="CIF_CERTTYPE" />
+		<result property="IdNo" column="CIF_CERTNO" />
+		<result property="CifName" column="CIF_NAME" />
+		<result property="OpenDate" column="USER_OPENDATE" />
+		<result property="OrganId" column="USER_ORGANID" />
+		<result property="UserCertNo" column="USER_CERTNO" />
+		<result property="TransferFlag" column="USER_TRANSFERFLAG" />
+		<result property="UserSource" column="USER_SOURCE" />
+		<result property="LoginName" column="USER_LOGINNAME" /> 
+		
+		
+		
+	</resultMap>
+	
+	
+	<select id="queryuserinfowithcard" parameterClass="java.util.HashMap" resultMap="queryuserinfowithcardResult">
+		select *
+		 from IBS_PTAB_USER a,IBS_PTAB_CIF b ,IBS_PTAB_AC c where a.CIF_NO = b.CIF_NO
+		and a.USER_ID = c.USER_ID and c.AC_NO = #AcNo#
+		
+		<dynamic prepend="AND">
+   		 <isNotEmpty prepend="AND" property="IdType"> b.CIF_CERTTYPE = #IdType#</isNotEmpty>
+   		 <isNotEmpty prepend="AND" property="IdNo"> b.CIF_CERTNO = #IdNo#</isNotEmpty>
+   		 <isNotEmpty prepend="AND" property="UserType"> a.USER_TYPE = #UserType#</isNotEmpty>
+   		 <isNotEmpty prepend="AND" property="UserStatus"> a.USER_STATUS &lt;&gt;'2'</isNotEmpty>
+   		 <isNotEmpty prepend="AND" property="UpgradeToCert"> a.USER_TYPE &lt;&gt;'2'</isNotEmpty>
+   		 
+    </dynamic>
+		
+		
+    </select>
+    
+    
+    
+    <!--查询客户信息-->
+	<resultMap class="java.util.HashMap" id="querycifinfoResult">
+		<result property="CifNo" column="CIF_NO" />
+	</resultMap>
+	
+	
+	<select id="querycifinfo" parameterClass="java.util.HashMap" resultMap="querycifinfoResult">
+		select * from IBS_PTAB_CIF where CIF_NO = #CifNo#
+		and CIF_CERTTYPE = #IdType# and CIF_CERTNO = #IdNo#
+    </select>
+    
+    
+    
+    <!-- 插入客户信息表  -->
+	<insert id="insertcifinfo" parameterClass="java.util.HashMap">
+	   insert into IBS_PTAB_CIF
+	   (
+	   	CIF_NO,
+	   	CIF_NAME,
+	   	CIF_CERTTYPE,
+	   	CIF_CERTNO,
+	   	CIF_SEX
+	   	<dynamic >
+			<isNotEmpty prepend="," property="Address">CIF_HOMEADDR</isNotEmpty>
+			<isNotEmpty prepend="," property="PostCode">CIF_HOMEZIPCODE</isNotEmpty>
+			<isNotEmpty prepend="," property="TelNo">CIF_HOMETELNO</isNotEmpty>
+			<isNotEmpty prepend="," property="Mobile">CIF_CELLPHONENO</isNotEmpty>
+			<isNotEmpty prepend="," property="Email">CIF_EMAIL</isNotEmpty>
+         </dynamic>
+	   )
+	   values(
+	   	#CifNo#,
+	   	#CifName#,
+	   	#IdType#,
+	   	#IdNo#,
+	   	#Sex#
+	   	<dynamic >
+			<isNotEmpty prepend="," property="Address">#Address#</isNotEmpty>
+			<isNotEmpty prepend="," property="PostCode">#PostCode#</isNotEmpty>
+			<isNotEmpty prepend="," property="TelNo">#TelNo#</isNotEmpty>
+			<isNotEmpty prepend="," property="Mobile">#Mobile#</isNotEmpty>
+			<isNotEmpty prepend="," property="Email">#Email#</isNotEmpty>
+         </dynamic>
+	   )
+	</insert>
+	
+	
+	
+	<!-- 插入用户信息表  -->
+	<insert id="insertuserinfo" parameterClass="java.util.HashMap">
+	   insert into IBS_PTAB_USER
+	   (
+	   	USER_ID,
+	   	USER_LOGINNAME,
+	   	CIF_NO,
+	   	USER_TYPE,
+	   	USER_PASSWORD,
+	   	USER_ORGANID,
+	   	USER_OPENDATE,
+	   	USER_LASTMODDATE,
+	   	USER_STATUS,
+	   	USER_STYLE,
+	   	USER_SETFLAG,
+	   	USER_TRANSFERFLAG
+	   	<dynamic >
+	   		<isNotEmpty prepend="," property="Address">USER_CERTNO</isNotEmpty>
+		</dynamic>
+	   	
+	   	
+	   	
+	   )
+	   values(
+	   	#UserId#,
+	   	#LoginName#,
+	   	#CifNo#,
+	   	#CifType#,
+	   	#Password#,
+	   	#IssueOrgId#,
+	   	#OpenDate#,
+	   	#OpenDate#,
+	   	'0',
+	   	'A',
+	   	'0',
+	   	#TransferFlag#
+	   	<dynamic >
+	   		<isNotEmpty prepend="," property="UserCertNo">#UserCertNo#</isNotEmpty>
+		</dynamic>
+	   	
+	   )
+	</insert>
+	
+	
+	
+	<!-- 插入用户账户信息表  -->
+	<insert id="insertuseracinfo" parameterClass="java.util.HashMap">
+	   insert into IBS_PTAB_AC
+	   (
+	   	USER_ID,
+	   	AC_NO,
+	   	AC_TYPE,
+	   	AC_ORGANID
+	   	<dynamic >
+			<isNotEmpty prepend="," property="CifName">AC_NAME</isNotEmpty>
+         </dynamic>
+	   )
+	   values(
+	   	#UserId#,
+	   	#AcNo#,
+	   	#AcType#,
+	   	#IssueOrgId#
+	   	<dynamic >
+			<isNotEmpty prepend="," property="CifName">#CifName#</isNotEmpty>
+         </dynamic>
+	   )
+	</insert>
+	
+	
+	<resultMap class="java.util.HashMap" id="querycurrjnlno4perResult">
+		<result property="JnlNo" column="JNL_NO" />
+	</resultMap>
+    <select id="querycurrjnlno4per" parameterClass="java.util.HashMap" resultMap="querycurrjnlno4perResult">
+		select MAX(SUBSTR(JNL_NO,7,12)) JNL_NO from IBS_PTAB_BJNL 
+		where JNL_TELLERID=#TellerId# and JNL_DATE = #TransDate#
+    </select>
+    
+    
+    
+    <!-- 更新用户信息 -->
+    <update id="updateuserinfo" parameterClass="java.util.HashMap">
+	update IBS_PTAB_USER
+		<dynamic prepend="set">
+       <isNotNull prepend="," property="UserStatus">USER_STATUS = #UserStatus#</isNotNull>  
+       <isNotNull prepend="," property="UserType">USER_TYPE = #UserType#</isNotNull>
+       <isNotNull prepend="," property="OpenDate">USER_OPENDATE = #OpenDate#</isNotNull>
+       <isNotNull prepend="," property="ModDate">USER_LASTMODDATE = #ModDate#</isNotNull>
+       <isNotNull prepend="," property="UserCertNo">USER_CERTNO = #UserCertNo#</isNotNull>
+       <isNotNull prepend="," property="Password">USER_PASSWORD = #Password#</isNotNull>
+       <isNotNull prepend="," property="FDYNGYJG">USER_ORGANID = #FDYNGYJG#</isNotNull>
+       <isNotNull prepend="," property="TransferFlag">USER_TRANSFERFLAG = #TransferFlag#</isNotNull>
+       </dynamic>
+       where  USER_ID = #UserId#
+	</update>
+	
+	
+	<!-- 用户重新开户-->
+    <update id="userreopen" parameterClass="java.util.HashMap">
+	update IBS_PTAB_USER set USER_TYPE = '1',USER_STATUS = '0',USER_TIPNOTE = '',
+	USER_LOGINTIME=0,USER_FAILLOGIN=0,USER_SETFLAG='0',USER_LOGINNAME = CIF_NO,USER_SOURCE = '0'
+		<dynamic prepend=",">
+       		<isNotNull prepend="," property="OpenDate">USER_OPENDATE = #OpenDate#</isNotNull>
+      	 	<isNotNull prepend="," property="OpenDate">USER_LASTMODDATE = #OpenDate#</isNotNull>
+       		<isNotNull prepend="," property="UserCertNo">USER_CERTNO = #UserCertNo#</isNotNull>
+       		<isNotNull prepend="," property="Password">USER_PASSWORD = #Password#</isNotNull>
+       		<isNotNull prepend="," property="FDYNGYJG">USER_ORGANID = #FDYNGYJG#</isNotNull>
+       		<isNotNull prepend="," property="TransferFlag">USER_TRANSFERFLAG = #TransferFlag#</isNotNull>
+       </dynamic>
+       where  USER_ID = #UserId#
+	</update>
+	
+	
+	<!-- 用户销户-->
+    <update id="canceluserinfo" parameterClass="java.util.HashMap">
+	update IBS_PTAB_USER set USER_STATUS = '2',USER_LASTMODDATE = #DelDate#
+       where  USER_ID = #UserId#
+	</update>
+	
+	
+	<!--删除帐户信息-->
+	<delete id="deleteacinfo" parameterClass="java.util.HashMap">
+	   delete from IBS_PTAB_AC
+	   where USER_ID = #UserId# 
+	</delete>
+	
+	<!-- 更新用户登录密码 -->
+    <update id="updateuserpasswd" parameterClass="java.util.HashMap">
+	update IBS_PTAB_USER set USER_PASSWORD = #Password#,USER_FAILLOGIN=0
+       where  USER_ID = #UserId#
+	</update>
+    
+    
+    <!-- 查询柜员交易流水 -->
+    
+    <resultMap class="java.util.HashMap" id="querytransjnlResult">
+		<result property="JnlNo" column="JNL_NO" />
+		<result property="JnlDate" column="JNL_DATE" />
+		<result property="TransCode" column="TRANS_CODE" />
+		<result property="TellerId" column="JNL_TELLERID" />
+		<result property="AuthTellerId" column="JNL_AUTHTELLERID" />
+		<result property="AcNo" column="AC_NO" />
+		<result property="CifName" column="CIF_NAME" />
+	</resultMap>
+    <select id="querytransjnl" parameterClass="java.util.HashMap" resultMap="querytransjnlResult">
+		select * from IBS_PTAB_BJNL where TRANS_STATUS='0'
+		<dynamic prepend="AND">
+			<isNotEmpty prepend="AND" property="BeginDate"> JNL_DATE &gt;= #BeginDate# </isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="EndDate"> JNL_DATE &lt;= #EndDate# </isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="TransCode"> TRANS_CODE = #TransCode# </isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="TellerId"> JNL_TELLERID = #TellerId# </isNotEmpty>
+   		    <isNotEmpty prepend="AND" property="FDYNGYJG"> JNL_ORGANID = #FDYNGYJG# </isNotEmpty>
+   		 </dynamic>
+   		 order by JNL_TELLERID,JNL_NO
+    </select>
+    
+    
+    <!-- 更新对外转账开通标志 -->
+    <update id="updateusertransflaginfo" parameterClass="java.util.HashMap">
+	update IBS_PTAB_USER set USER_TRANSFERFLAG = #TransFlag#
+       where  USER_ID = #UserId#
+	</update>
+	
+	
+	<!-- 日志查询 -->
+	<resultMap class="java.util.HashMap" id="querypertransjnl4printResult">
+		<result property="JnlDateTime" column="JNL_DATETIME" />
+		<result property="TransStatus" column="TRANS_STATUS" />
+		<result property="JnlData" column="JNL_DATA" />
+		<result property="CifName" column="CIF_NAME" />
+		<result property="TellerId" column="JNL_TELLERID" />
+		<result property="OrganId" column="JNL_ORGANID" />
+		<result property="AuthTellerId" column="JNL_AUTHTELLERID" />
+		<result property="TransCode" column="TRANS_CODE" />
+		<result property="AcNo" column="AC_NO" />
+		
+		
+	</resultMap>
+	
+	<select id="querypertransjnl4print" parameterClass="java.util.HashMap" resultMap="querypertransjnl4printResult">
+		select * from IBS_PTAB_BJNL where JNL_NO = #JnlNo# and JNL_DATE = #TransDate#
+		and JNL_ORGANID = #OrganId# and TRANS_STATUS='0'
+    </select>
+   
+   
+	
+	<!-- 支行名称查询 -->
+	<resultMap class="java.util.HashMap" id="queryorgannameResult">
+		<result property="OrganName" column="ORGAN_NAME" />
+		
+	</resultMap>
+	
+	<select id="queryorganname" parameterClass="java.lang.String" resultMap="queryorgannameResult">
+		select * from IBS_TAB_ORGAN where ORGAN_ID = #value#
+    </select>	 
+    
+    
+    
+    
+    <!-- 帐户查询-->
+	<resultMap class="java.util.HashMap" id="queryacinfoResult">
+		<result property="AcNo" column="AC_NO" />
+	</resultMap>
+	
+	<select id="queryacinfo" parameterClass="java.util.HashMap" resultMap="queryacinfoResult">
+		select * from IBS_PTAB_AC where AC_NO = #AcNo#
+    </select>  
+    
+    
+    <!-- 报表统计-->
+	<resultMap class="java.util.HashMap" id="queryreportResult">
+		<result property="OrganID" column="ORGAN_ID" />
+		<result property="TellerId" column="TELLER_ID" />
+		<result property="Open" column="OPEN_COUNT" />
+		<result property="Close" column="CANCEL_COUNT" />
+		<result property="Cert" column="MACERT_COUNT" />
+		<result property="Status" column="HANG_COUNT" />
+		<result property="Transfer" column="TRANS_COUNT" />
+		<result property="Pass" column="RTPASS_COUNT" />
+		
+	</resultMap>
+	
+	<select id="queryreport" parameterClass="java.util.HashMap" resultMap="queryreportResult">
+		select to_char(OPEN_COUNT) OPEN_COUNT, to_char(CANCEL_COUNT) CANCEL_COUNT,to_char(MACERT_COUNT) MACERT_COUNT,
+		to_char(HANG_COUNT) HANG_COUNT,to_char(TRANS_COUNT) TRANS_COUNT,to_char(RTPASS_COUNT) RTPASS_COUNT,ORGAN_ID,TELLER_ID
+		from IBS_PTAB_BATCH_BJNLCOUNT where ORGAN_ID = #FDYNGYJG# and TRANS_DATE = #TransDate# order by TELLER_ID
+    </select> 
+    
+    
+    <!--更新网银客户信息-->
+    <update id="updatecifinfo" parameterClass="java.util.HashMap">
+	update IBS_PTAB_CIF 
+		<dynamic prepend="set">
+			<isNotEmpty prepend="," property="CifName">CIF_NAME = #CifName#</isNotEmpty>
+			<isNotEmpty prepend="," property="Sex">CIF_SEX = #Sex#</isNotEmpty>
+			<isNotEmpty prepend="," property="PostCode">CIF_HOMEZIPCODE = #PostCode#</isNotEmpty>
+			<isNotEmpty prepend="," property="IdNo">CIF_CERTNO = #IdNo#</isNotEmpty>
+			<isNotEmpty prepend="," property="IdType">CIF_CERTTYPE = #IdType#</isNotEmpty>
+			<isNotEmpty prepend="," property="Address">CIF_HOMEADDR = #Address#</isNotEmpty>
+			<isNotEmpty prepend="," property="TelNo">CIF_HOMETELNO = #TelNo#</isNotEmpty>
+			<isNotEmpty prepend="," property="Mobile">CIF_CELLPHONENO = #Mobile#</isNotEmpty>
+			<isNotEmpty prepend="," property="Email">CIF_EMAIL = #Email#</isNotEmpty>
+       </dynamic>
+       where  CIF_NO = #CifNo#
+	</update>
+	
+	
+	<resultMap class="java.util.HashMap" id="queryBinCurrencyResult">
+        <result property="Currency" column="CURRENCY" />
+	</resultMap>
+	
+
+	<select id="queryBinCurrency" parameterClass="java.lang.String" resultMap="queryBinCurrencyResult">
+		SELECT CURRENCY FROM IBS_PTAB_BIN WHERE BIN_NO = #value#
+	</select>
+	
+	
+	
+	<!--查询老网银客户证书申请记录-->
+	<resultMap class="java.util.HashMap" id="querymovecertResult">
+        <result property="CertNo" column="user_certno" />
+	</resultMap>
+	
+
+	<select id="querymovecert" parameterClass="java.lang.String" resultMap="querymovecertResult">
+		select * from IBS_PTAB_MOVE where USER_ID = #value#
+	</select>
+	
+	<!--查询老网银客户开通对外转账记录-->
+	<resultMap class="java.util.HashMap" id="querymovetransferResult">
+        <result property="CifNo" column="cif_no" />
+	</resultMap>
+	
+
+	<select id="querymovetransfer" parameterClass="java.lang.String" resultMap="querymovetransferResult">
+		select * from IBS_PTAB_MOVETRANSFER where CIF_NO = #value#
+	</select>
+	
+	
+	
+	<!-- 插入老网银对外转账信息表  -->
+	<insert id="insertmovetransfer" parameterClass="java.lang.String">
+	   insert into IBS_PTAB_MOVETRANSFER
+	   (
+	   	CIF_NO
+	   )
+	   values(
+	   	#value#
+	   )
+	</insert>
+	
+    <!-- 插入网银与CFCA两码对应表  -->
+	<insert id="insertTwoCode" parameterClass="java.util.HashMap">
+	   insert into IBS_TAB_CERT_TWOCODE   
+	   (NETBANK_TWOCODE,REFCODE,AUTHCODE,CIF_NO,SERIAL_NO) 
+		values 
+	   (#netbankTwoCode#,#refCode#,#authCode#,#cifNo#,#serialNo#)
+	</insert>
+	<resultMap class="java.util.HashMap" id="queryTwoCodeResult">  
+		<result property="netbankTwoCode" column="NETBANK_TWOCODE"/> 
+		<result property="refCode" column="REFCODE"/>
+		<result property="authCode" column="AUTHCODE"/>
+		<result property="cifNo" column="CIF_NO"/>
+		<result property="serialNo" column="SERIAL_NO"/>		
+	</resultMap>
+		
+	<select id="queryTwoCode" parameterClass="java.util.HashMap" resultMap="queryTwoCodeResult">
+		select 	NETBANK_TWOCODE,REFCODE,AUTHCODE,CIF_NO,SERIAL_NO
+	    from IBS_TAB_CERT_TWOCODE where CIF_NO=#cifNo#
+	    <dynamic prepend="and"> 
+	     	<isNotEmpty prepend="and" property="netbankTwoCode"> NETBANK_TWOCODE=#netbankTwoCode# </isNotEmpty>                                             
+	     	<isNotEmpty prepend="and" property="refCode"> REFCODE=#refCode# and AUTHCODE=#authCode# </isNotEmpty>   
+	    </dynamic>
+    </select>
+    
+    <resultMap class="java.util.HashMap" id="queryForSerialNoResult">  
+		<result property="serialNo" column="SERIAL_NO"/> 
+	</resultMap>
+    <select id="queryForSerialNo" parameterClass="java.lang.String" resultMap="queryForSerialNoResult">
+		SELECT 	nvl(max(serial_no)+1,'1') as SERIAL_NO
+	    FROM IBS_TAB_CERT_TWOCODE WHERE CIF_NO=#cifNo#
+	</select>   
+    
+</sqlMap>

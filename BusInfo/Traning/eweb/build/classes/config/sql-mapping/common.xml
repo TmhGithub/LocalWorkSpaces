@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common">
+
+
+
+	
+	<!--insert user access log -->
+	<insert id="insertAccessLog" parameterClass="java.util.HashMap">
+	
+     insert into ACCESSLOG 
+	               (JNLNO, 
+					STATUS,
+	                ACCESSDATE,
+					DATETIME,
+					USERID,
+					TRANSNAME,
+					IPADDR
+
+	               )
+	   values(
+	    #_JnlNo#, 
+	    #_JnlStatus#,
+	    #_TransactionSqlDate#,
+		#_TransactionTimestamp#,
+	    #_UserId#,
+	    #_TransName#,
+	    #_IpAddr#
+
+		)	    
+	</insert>
+
+	<update id="updateAccessLog" parameterClass="java.util.HashMap">
+	   update ACCESSLOG set
+       STATUS =  #_JnlStatus#  ,    
+       <isNotEmpty  property="_RejCode">REJCODE = #_RejCode#  ,</isNotEmpty>
+	   <isNotEmpty  property="_RejMessage">REJMSG = #_RejMessage#, </isNotEmpty>
+       ENDTIME = #_EndTime#
+       
+       where JNLNO=#_JnlNo#
+	</update>
+
+	<!--insert transaction log -->
+	<insert id="insertTrsLog" parameterClass="java.util.HashMap">
+	
+     insert into JNL 
+	               (JNLNO, 
+					STATUS,
+	                JNLDATE,
+					DATETIME,
+					USERID,
+					TRANSNAME,
+					IPADDR
+		<isNotEmpty prepend="," property="AcNo">ACNO</isNotEmpty>
+	               )
+	   values(
+	    #_JnlNo#, 
+	    #_JnlStatus#,
+	    #_TransactionSqlDate#,
+		#_TransactionTimestamp#,
+	    #_UserId#,
+	    #_TransName#,
+	    #_IpAddr#
+		<isNotEmpty prepend="," property="AcNo">#AcNo#</isNotEmpty>
+		)	    
+	</insert>
+
+	<update id="updateTrsLog" parameterClass="java.util.HashMap">
+	   update JNL set
+       STATUS =  #_JnlStatus#  ,    
+       <isNotEmpty  property="_RejCode">REJCODE = #_RejCode#  ,</isNotEmpty>
+	   <isNotEmpty  property="_RejMessage">REJMSG = #_RejMessage#, </isNotEmpty>
+       ENDTIME = #_EndTime#
+       
+       where JNLNO=#_JnlNo#
+	</update>
+
+	<resultMap class="java.util.HashMap" id="loadUAProfilesResult">
+		<result property="ProfileUrl" column="PROFURL" />
+		<result property="Vendor" column="VENDOR" />		
+        <result property="Model" column="MODEL"/>   		
+        <result property="RatioX" column="RATIO_X"/>
+		<result property="RatioY" column="RATIO_Y" />	
+        <result property="ScreenSizeX" column="SCR_SZ_X"/>
+        <result property="ScreenSizeY" column="SCR_SZ_Y"/>
+        <result property="ScreenSizeCharX" column="SCR_SZ_CHAR_X"/>
+        <result property="ScreenSizeCharY" column="SCR_SZ_CHAR_Y"/>
+        <result property="StandardFontProportional" column="SCR_STD_FONT_PP"/>   		
+        <result property="BitsPerPixel" column="BITS_PERPIXEL"/>   		
+        <result property="ColorCapable" column="COLOR_CAPABLE"/>   		
+        <result property="ImageCapable" column="IMAGE_CAPABLE"/>   		
+        <result property="SoftKeysNumber" column="SOFTKEYS"/>   		
+        <result property="XHTMLVersion" column="XHTML_VER"/>   		
+        <result property="FrameCapable" column="FRAME_CAPABLE"/>  
+        <result property="WAPVersion" column="WAP_VER"/>   		
+        <result property="JavaScriptEnabled" column="JAVASCRIPT"/>   		
+        <result property="Enabled" column="ENABLED"/>   		
+
+	</resultMap>
+	
+	<select id="loadUAProfiles" parameterClass="java.util.HashMap" resultMap="loadUAProfilesResult">
+	select  
+        PROFURL,  
+        VENDOR,
+       	MODEL,
+		RATIO_X,RATIO_Y,
+		SCR_SZ_X,SCR_SZ_Y,
+		SCR_SZ_CHAR_X,SCR_SZ_CHAR_Y,
+		SCR_STD_FONT_PP,
+        BITS_PERPIXEL,  
+		COLOR_CAPABLE,
+		IMAGE_CAPABLE,
+		SOFTKEYS,
+		XHTML_VER,
+		FRAME_CAPABLE,
+		WAP_VER,
+		JAVASCRIPT,
+		ENABLED
+
+    from UAPROF 
+	</select>
+
+	<resultMap class="java.util.HashMap" id="queryCSSMappingResult">
+		<result property="CSSId" column="CSSID" />
+		<result property="ExternalCSS" column="EXTERNAL" />
+	</resultMap>
+
+	
+	<select id="queryCSSMapping" parameterClass="java.util.HashMap" resultMap="queryCSSMappingResult">
+	select   CSSID, EXTERNAL
+    from CSSMAPPING where VENDOR=#Vendor# and MODEL=#Model# and BEARER=#Bearer#
+	</select>
+
+
+	<resultMap class="java.util.HashMap" id="loadCSSResoucesResult">
+		<result property="CSSId" column="CSSID" />
+		<result property="CSSPath" column="FILENAME" />		
+        <result property="CSSContent" column="DATA"/>   		
+	</resultMap>
+	
+	<select id="loadCSSResouces" parameterClass="java.util.HashMap" resultMap="loadCSSResoucesResult">
+	select  
+        CSSID,  
+        FILENAME,
+       	DATA
+    from CSSDEF 
+	</select>
+
+
+</sqlMap>

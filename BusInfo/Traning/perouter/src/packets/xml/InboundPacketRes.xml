@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE Group SYSTEM "packet.dtd">
+<Group name="Message" xmlHead="&lt;?xml version=&quot;1.0&quot; encoding=&quot;GB2312&quot;?&gt;">
+	<Group name="Head">
+		<xmlTag>
+			<String name="RejCode" defaultValue="0000" ></String>
+		</xmlTag>
+		<xmlTag>
+			<String name="RejMsg" ></String>
+		</xmlTag>
+	</Group>
+	<Group name="Body">
+		<include keyName="TransactionId"></include>
+	</Group>
+</Group>
+
+

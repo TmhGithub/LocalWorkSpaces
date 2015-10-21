@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<bean id="rolePool" class="com.csii.pe.accesscontrol.rc.support.RolePool">
+
+		<list name="roles">
+
+			<!-- common function-->
+		   	<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">9999</param>
+			    <list name="roles">		
+					<param >headBarIn</param>
+					<param >left</param>
+					<param >right</param>
+					<param >footBar</param>
+					<param >leftbar</param>					
+					<param >rightbar</param>					
+					<param >welcome</param>			    	
+					<param >logout</param>
+					<param >menu</param>
+				</list>
+			</bean>
+			
+		
+
+			<!-- Ac Transaction History Query -->
+		   	<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">ACQ003</param>
+			    <list name="roles">							
+					<param >preQueryTrsHistory</param>
+					<param >QueryTrsHistory</param>					
+				</list>
+			</bean>	
+			
+			<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">ACQ004</param>
+			    <list name="roles">							
+					<param >cifInfoQry</param>
+				</list>
+			</bean>		
+			
+			
+			<!-- Inner Transfer -->
+		   	<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">ACT010</param>
+			    <list name="roles">							
+					<param >preEntInnerTransfer</param>
+					<param >EntInnerTransfer</param>					
+				</list>
+			</bean>		
+
+
+
+
+			<!-- Bank Inner Transfer -->
+		   	<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">ACT020</param>
+			    <list name="roles">							
+					<param >preEntTransfer</param>
+					<param >EntTransfer</param>
+					<param >TransferPre</param>
+					<param >TransferConfirm</param>
+					<param >Transfer</param>
+										
+				</list>
+			</bean>	
+
+				
+			
+			<!-- Authorization -->
+		   	<bean class="com.csii.pe.accesscontrol.rc.support.SimpleTrsGroupRole">
+	    		<param name="name">ACT030</param>
+			    <list name="roles">							
+					<param >AuthList</param>
+					<param >AuthDetail</param>	
+					<param >AuthResult</param>											
+				</list>
+			</bean>		
+		
+       </list>
+
+	</bean>
+
+</config>

@@ -1,0 +1,29 @@
+!SESSION 2013-04-09 10:28:19.151 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_09
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product -data F:\WorkSpace\Traning\Traning -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2013-04-09 10:34:05.496
+!MESSAGE Invalid thread access
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4361)
+	at org.eclipse.swt.SWT.error(SWT.java:4276)
+	at org.eclipse.swt.SWT.error(SWT.java:4247)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:359)
+	at org.eclipse.swt.widgets.Control.setEnabled(Control.java:3266)
+	at org.eclipse.wst.common.project.facet.ui.internal.FacetsSelectionPanel.handleSelectedPresetChangedEvent(FacetsSelectionPanel.java:1024)
+	at org.eclipse.wst.common.project.facet.ui.internal.FacetsSelectionPanel.access$16(FacetsSelectionPanel.java:1018)
+	at org.eclipse.wst.common.project.facet.ui.internal.FacetsSelectionPanel$13.handleEvent(FacetsSelectionPanel.java:419)
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProjectWorkingCopy.notifyListeners(FacetedProjectWorkingCopy.java:1752)
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProjectWorkingCopy.resumeEventNotification(FacetedProjectWorkingCopy.java:1797)
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProjectWorkingCopy.revertChanges(FacetedProjectWorkingCopy.java:2106)
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProjectWorkingCopy.commitChanges(FacetedProjectWorkingCopy.java:2035)
+	at org.eclipse.wst.common.project.facet.ui.internal.FacetsPropertyPage$4.run(FacetsPropertyPage.java:232)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.wst.common.project.facet.ui.internal.FacetsPropertyPage$5.run(FacetsPropertyPage.java:246)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

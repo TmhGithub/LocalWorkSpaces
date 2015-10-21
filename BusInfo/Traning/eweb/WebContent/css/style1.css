@@ -1,0 +1,99 @@
+/* CSS Document */
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+table,tr,td{
+	font-family: "����";
+	font-size: 12px;
+	line-height: 1.5;
+	color: #000000;
+}
+
+a:link {
+	color: #000000;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FF9900;
+}
+a:active {
+	text-decoration: none;
+}
+
+
+.a:lian link {
+	color: #D90000;
+	text-decoration: none;
+}
+.a:lian visited {
+	text-decoration: none;
+	color: #D90000;
+}
+.a:lian hover {
+	text-decoration: underline;
+	color: #6699CC;
+}
+.a:active {
+	text-decoration: none;
+}
+
+/*���б��,table����class="table_bian", td����class="td_bg1"����class="td_bg2"(������ɫ��ͬ)*/
+.table-class {
+	border: 1px solid #b9ccd4;
+}
+.td_bg1{
+	background-color: #d5eaba;
+	text-align: center;
+	height: 30px;
+}
+.td_bg2{
+	background-color: #d7ebf3;
+    text-align: left;
+	text-indent: 10px;
+	height: 30px;
+}
+.td_right{
+    text-align: right;
+}
+
+/*����ʱ����ʽ*/
+.table_corry{
+	border: 1px solid #b9ccd4;
+	background-color: #d7ebf3;
+	text-align: center;
+	height: 50px;
+}
+
+/*main��������ʽ,ע���class����td��*/
+.title_td{
+	font-size: 14px;
+	line-height: 1.5;
+	text-indent: 20px;
+	text-align: left;
+	border: 1px solid #b9ccd4;
+	background-image: url(images/titlebg.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+
+/*��ťЧ����ʽ*/
+.anniu{
+	font-size: 14px;
+	background-image: url(images/anniu.gif);
+	line-height: 25px;
+	height: 25px;
+	width: 78px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}

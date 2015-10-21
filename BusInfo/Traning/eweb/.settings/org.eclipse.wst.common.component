@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="eweb">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="ecommon.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ecommon/ecommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="bcprov-jdk14-136.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/bcprov-jdk14-136.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="db2jcc_license_cu.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/db2jcc_license_cu.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-transform-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-transform-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jstl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/jstl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-security-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-security-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="db2jcc_javax.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/db2jcc_javax.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/activation-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-ibs-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-ibs-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-base-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-base-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="db2jcc_license_cisuz.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/db2jcc_license_cisuz.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="db2jcc.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/db2jcc.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-collections.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmlsec-1.4.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/xmlsec-1.4.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-tcp-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-tcp-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/log4j-1.2.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xbean-2.2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/xbean-2.2.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xalan-2.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/xalan-2.7.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-service-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-service-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-logging-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-dbcp.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-dbcp.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aopalliance.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/aopalliance.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-pool.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-pool.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="concurrent.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/concurrent.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-http-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-http-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-codec-1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-codec-1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="servletapi-2.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/servletapi-2.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="standard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/standard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-fileupload-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-discovery-0.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-discovery-0.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-httpclient-3.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-httpclient-3.0.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ibatis-2.3.0.677.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/ibatis-2.3.0.677.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xercesImpl-2.8.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/xercesImpl-2.8.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cos.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/cos.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ognl-2.6.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/ognl-2.6.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-lang.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xml-apis-1.3.03.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/xml-apis-1.3.03.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/commons-io-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="XmlSchema-1.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/XmlSchema-1.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="equery.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/equery/equery">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="etransfer.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/etransfer/etransfer">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eauth.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eauth/eauth">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pe-core-guard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ibslib/lib/pe-core-guard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/eweb/build/classes"/>
+        <property name="context-root" value="eweb"/>
+    </wb-module>
+</project-modules>

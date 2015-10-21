@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+
+<config>
+
+	<!-- 客户账户内部转账交易定义 -->
+	<transaction id="preEntInnerTransfer" template="pageLoaderTemplate">
+		<actions>
+			<ref name="act01">IbsTwoPhaseAction</ref>
+		</actions>
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/preEntInnerTransfer</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="EntInnerTransfer" template="twoPhaseTrsTemplate"> 
+		<actions>
+			<ref name="action">IbsTwoPhaseAction</ref>
+		</actions>
+		<!-- 基于Style的有效性检查 -->
+		<!-- 建议一种类型的域对应同一个Style,这可以减低维护工作量 -->
+
+		<fields>
+			<field name="AcNo">AcTransferPermissionStyle</field>
+			<field name="AcNo2">AcQueryPermissionStyle</field>
+			<field name="Amount">amountStyle</field>
+			<field name="Purpose"></field>
+		</fields>
+
+		<!-- 基于Rule的有效性检查 -->
+		<!-- 系统提供的Rule实现可以支持基于布尔表达式的交叉数据检查
+			及访问控制。
+		-->
+		<rules>
+			<rule id="equals">
+				<param name="content">dataMap.AcNo != dataMap.AcNo2</param>
+				<param name="messageKey">validation.ac.equal</param>
+			</rule>
+		</rules>
+
+		<!-- HTTP渠道的配置 -->
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/EntInnerTransferResult</param>
+			</channel>
+		</channels>
+		<!-- TCP渠道的配置,一般而言无需对TCP渠道额外配置 -->
+	</transaction>
+
+	<transaction id="preEntTransfer" template="pageLoaderTemplate">
+		<actions>
+			<ref name="act01">IbsTwoPhaseAction</ref>
+		</actions>
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/preEntTransfer</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="EntTransfer" template="entryTrsWorkflow">
+		<actions>
+			<ref name="action">IbsTwoPhaseAction</ref>
+		</actions>
+
+		<fields>
+			<field name="AcNo">AcTransferPermissionStyle</field>
+			<field name="AcNo2"></field>
+			<field name="Amount">amountStyle</field>
+			<field name="Purpose"></field>
+		</fields>
+
+		<rules>
+			<rule id="equals">
+				<param name="content">dataMap.AcNo != dataMap.AcNo2</param>
+				<param name="messageKey">validation.ac.equal</param>
+			</rule>
+
+		</rules>
+
+		<!-- HTTP渠道的配置 -->
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/EntTransferResult</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	
+	
+	<transaction id="TransferPre" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/TransferPre</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	
+	<transaction id="TransferConfirm" template="trsConfirmTemplate"> 
+		<actions>
+			<ref name="action">TransferAction</ref>
+		</actions>
+
+		<fields>
+			<field name="AcNo">AcTransferPermissionStyle</field>
+			<field name="PayeeAcNo"></field>
+			<field name="PayeeAcName"></field>
+			<field name="PayeeBankId"></field>
+			<field name="Amount">amountStyle</field>
+			<field name="Purpose"></field>
+		</fields>
+
+		<rules>
+			<rule id="equals">
+				<param name="content">dataMap.AcNo != dataMap.PayeeAcNo</param>
+				<param name="messageKey">validation.ac.equal</param>
+			</rule>
+		</rules>
+
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/TransferConfirm</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<transaction id="Transfer" template="twoPhaseTrsTemplate"> 
+		<actions>
+			<ref name="action">TransferAction</ref>
+		</actions>
+
+		<fields>
+			<field name="AcNo">AcTransferPermissionStyle</field>
+			<field name="PayeeAcNo"></field>
+			<field name="PayeeAcName"></field>
+			<field name="PayeeBankId"></field>
+			<field name="Amount">amountStyle</field>
+			<field name="Purpose"></field>
+		</fields>
+
+		<rules>
+			<rule id="equals">
+				<param name="content">dataMap.AcNo != dataMap.PayeeAcNo</param>
+				<param name="messageKey">validation.ac.equal</param>
+			</rule>
+		</rules>
+
+		<channels>
+			<channel type="http">
+				<param name="success">transfer/Transfer</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<action id="TransferAction" class="com.csii.ibs.transfer.action.TransferAction" parent="IbsTwoPhaseAction" >
+	</action>
+
+</config>

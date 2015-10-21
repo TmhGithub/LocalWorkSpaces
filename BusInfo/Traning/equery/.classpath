@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ecommon"/>
+	<classpathentry kind="lib" path="/ibslib/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/aopalliance.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/bcprov-jdk14-136.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-dbcp.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-fileupload-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-io-1.2.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/commons-pool.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/concurrent.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/cos.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/db2jcc_javax.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/db2jcc_license_cisuz.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/db2jcc_license_cu.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/db2jcc.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/ibatis-2.3.0.677.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/log4j-1.2.9.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/ognl-2.6.5.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-base-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-core-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-http-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-ibs-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-security-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-service-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-tcp-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/pe-transform-guard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/servletapi-2.3.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/standard.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/xalan-2.7.0.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/xbean-2.2.0.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/xercesImpl-2.8.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/xml-apis-1.3.03.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/XmlSchema-1.3.1.jar"/>
+	<classpathentry kind="lib" path="/ibslib/lib/xmlsec-1.4.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_09">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common">
+
+
+
+	<resultMap class="java.util.HashMap" id="loadUserInfoResult">
+		<result property="UserId" column="USERID" />
+		<result property="Password" column="PASSWORD" />		
+        <result property="UserStatus" column="STATUS"/>   		
+        <result property="WAPTelNo" column="WAPTELNO"/>
+		<result property="UserName" column="USERNAME" />	
+        <result property="CifNo" column="CIFNO"/>
+        <result property="Name" column="CIFNAME" />
+	</resultMap>
+	
+	<select id="loadUserInfo" parameterClass="java.util.HashMap" resultMap="loadUserInfoResult">
+	select  
+        a.USERID,  
+        a.PASSWORD,
+        a.STATUS,
+		a.WAPTELNO,
+		a.USERNAME,
+        b.CIFNAME,  
+		a.CIFNO
+
+    from USR a , CIF b  where  a.CIFNO= b.CIFNO and USERID = #UserId# and a.STATUS = '0' 
+	</select>
+
+	
+	
+	<resultMap class="java.util.HashMap" id="queryUserPasswordResult">
+		<result property="Password" column="PASSWORD" />
+	</resultMap>
+	
+	<select id="queryUserPassword" parameterClass="java.util.HashMap"  resultMap="queryUserPasswordResult">
+	select  PASSWORD   from USER where USERID = #UserId# and USER_STATUS = '0'
+	</select>
+	
+
+
+	<resultMap class="com.csii.ibs.common.Account" id="queryUserAcResult">
+		<result property="id" column="ACNO" />	
+        <result property="permission" column="TRANSFERTYPE"/>   
+		<result property="curId" column="CURRENCY" />	       
+		<result property="curType" column="CURRTYPE" />	
+		<result property="status" column="STATUS" />	 
+		<result property="type" column="ACTYPE" />	
+
+	</resultMap>
+	
+
+	<select id="queryUserAc" parameterClass="java.util.HashMap" resultMap="queryUserAcResult">
+	select  
+        ACNO,        
+        TRANSFERTYPE ,
+        CURRENCY,
+        CURRTYPE,
+        STATUS ,
+        ACTYPE
+    from ACCT
+    where CIFNO= #CifNo#
+	</select>
+
+	<select id="queryUserRoleList" parameterClass="java.util.HashMap"  resultClass="java.lang.String" >
+	select  ROLEID
+		from ROLE 
+		where USERID=#UserId# 
+	</select>
+	
+	<resultMap class="java.util.HashMap" id="queryCifInfoResult">
+		<result property="BranchId" column="BRANCHID" />	
+        <result property="DeptId" column="DEPTID"/>   
+		<result property="Name" column="CIFNAME" />	       
+		<result property="OpenDate" column="OPENDATE" />	 
+	</resultMap>
+	
+	<select id="queryCifInfo" parameterClass="java.lang.String"  resultMap="queryCifInfoResult" >
+		select 
+			c.BRANCHID,
+			c.DEPTID,
+			c.CIFNAME,
+			c.OPENDATE
+		from CIF c
+		where c.CIFNO=#value#
+	</select>
+	
+
+</sqlMap>

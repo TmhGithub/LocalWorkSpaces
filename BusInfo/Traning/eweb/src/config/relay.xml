@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+  <transport id="relayTransport" class="com.csii.pe.service.comm.ExternTransformTransport" >
+     <ref name="transformerFactory">relayTransformerFactory</ref>
+     <ref name="transport">relayTcpTransport</ref>     
+     <param name="debug">false</param>
+     <param name="dumpPath">c:/dump</param>     
+    </transport>
+
+    <transformerFactory id="relayTransformerFactory" class="com.csii.pe.transform.TransformerFactory">
+	   <param name="path">/extern/</param>
+	</transformerFactory>
+
+     <transport id="relayTcpTransport" class="com.csii.pe.service.comm.tcp.ClusterRelayTcpTransport" >
+
+  	    <param name="headLength">5</param>		
+  	    <param name="offsetOfLengthField">0</param>	
+  	    <param name="type">BBBB</param>	
+  	    <param name="encoding">GBK</param>	
+  	    <param name="headIncluded">false</param>
+  	    <param name="timeout">60000</param>
+  	    <param name="cacheTimeout">2000</param>	  	  
+     
+    </transport>    
+
+	
+</config>

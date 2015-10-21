@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<!-- User   -->
+	<bean id="userManager" class="com.csii.ibs.common.EntUserManager">
+		<!--  <param name="sqlMapId">demodb</param>-->
+		<param name="userBeanName">user</param>
+		<ref name="uniqueIdResolver">uniqueUserIdResolver</ref>
+		<ref name="rolePool">rolePool</ref>
+	</bean>
+   
+	<user id="user" class="com.csii.ibs.common.EntUser" singleton="false">
+	</user>
+
+	<transaction id="login" template="sequenceTemplateforLoginControl">
+		<actions>
+			<ref name="act01">LoginAction</ref>
+		</actions>
+		<fields>
+			<field name="UserId">userIdStyle</field>
+			<field name="Password">passwordStyle</field>
+		</fields>
+		<channels>
+			<channel type="http">
+				<param name="success">menu</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<action id="LoginAction" class="com.csii.pe.action.LoginAction">
+		<ref name="successResourceList">successUserRegistry</ref>
+		<ref name="failureResourceList">failureUserRegistry</ref>
+		<ref name="userManager">userManager</ref>
+	</action>
+	
+</config>

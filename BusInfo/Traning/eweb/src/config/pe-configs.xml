@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	 <comment>
+
+	 PowerEngine Main Configuration
+	 Mode:
+	 Mode.DEMO （演示）
+
+	 </comment>
+	 <entry key="CurrentMode" >Mode.DEMO</entry>
+
+	<!--  <entry key="Mode.JSNX" >$config/jsnx/pe-configs.xml</entry> -->
+
+	 <entry key="CommonConfig" >
+			classpath:/config/constant.xml,
+			classpath:/config/http.xml,
+			classpath:/config/service.xml,
+			classpath:/config/core.xml,
+			classpath:/config/chain.xml,
+			classpath:/config/validator.xml,
+			classpath:/config/template.xml,	
+			classpath:/config/transport.xml,
+            classpath:/config/event.xml,	
+            classpath:/config/relay.xml,						
+			classpath:/config/role.xml,
+			classpath:/config/style.xml,
+			classpath:/config/entuser.xml,	
+			classpath:/config/action.xml,	
+			classpath:/config/trs/trs_common.xml,
+			classpath:/config/trs/trs_auth.xml,		
+			classpath:/config/trs/trs_transfer.xml,	
+			classpath:/config/trs/trs_query.xml
+	 </entry>
+
+</properties>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<!-- Actions  -->
+
+	<!-- system default actions -->
+
+	<action id="Placeholder" class="com.csii.pe.action.PlaceholderAction" />
+	
+	<action id="dummyAction" class="com.csii.ibs.action.DummyAction"/>
+	
+	<action id="dummyJournalAction" class="com.csii.ibs.journal.DummyJournalAction">	
+		<ref name="idFactory">idFactory</ref>	
+	</action>
+
+	<action id="LogoutAction" class="com.csii.pe.action.LogoutAction">
+		<ref name="successResourceList">successUserRegistry</ref>
+	</action>
+
+
+	<!-- login -->
+
+	<!-- user-defined actions -->
+	<!-- log jnl to database -->
+	
+	<action id="preSubmitJournal" class="com.csii.ibs.journal.PreSubmitJournal">
+		<ref name="idFactory">idFactory</ref>
+		<param name="sql">common.insertTrsLog</param>
+	</action>
+	<action id="aftSubmitJournal" class="com.csii.ibs.journal.UpdateJournal">
+		<param name="sql">common.updateTrsLog</param>
+	</action>
+
+
+  <!-- 通用二阶段交易Action（主要用于转账等涉及账务处理的交易） -->
+
+	<action id="IbsTwoPhaseAction" class="com.csii.ibs.action.IbsTwoPhaseAction" >
+	    <ref name="trsCodeResolver">CSXmlTrsCodeResolver</ref>
+	    <ref name="returnCodeValidator">regExReturnCodeValidator</ref>
+		<param name="hostTransportName">CSXmlTransport</param>	    
+	</action>
+
+ <!-- 通用查询类交易Action -->
+ 
+	<action id="IbsQueryAction" class="com.csii.ibs.action.IbsQueryAction" >
+	    <ref name="trsCodeResolver">CSXmlTrsCodeResolver</ref>
+	    <ref name="returnCodeValidator">regExReturnCodeValidator</ref>
+		<param name="hostTransportName">CSXmlTransport</param>	    
+	</action>
+
+   <bean id="CSXmlTrsCodeResolver" class="com.csii.ibs.action.HostTrsCodeResolver" >
+      <map name="map">
+        <param name="QueryTrsHistory">QueryAccountHist</param> 
+        <param name="EntInnerTransfer">EntInnerTransfer</param>       
+        <param name="EntTransfer">EntTransfer</param>    
+        <param name="Transfer">Transfer</param> 
+      </map>
+    </bean>
+    
+    <bean id="regExReturnCodeValidator" class="com.csii.ibs.action.RegExReturnCodeValidator" >
+       <param name="condition">RejCode==null || !RejCode.equals("0000")</param>
+       <param name="keyName">RejCode</param>
+       <param name="messageKeyName">ErrorMessage</param>
+       <param name="errorKeyPrefix"></param>
+    </bean>
+</config>

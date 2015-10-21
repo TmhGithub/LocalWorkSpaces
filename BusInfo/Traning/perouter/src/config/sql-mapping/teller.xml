@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="teller">
+
+
+
+
+	<!--insert teller transaction log -->
+	<insert id="insertTellerTrsLog" parameterClass="java.util.HashMap">
+	
+     insert into TELLERJNL 
+	               (
+					ACDATE,
+					ORGID,
+					JNLNO, 
+					STATUS,
+					BEGINTIME,
+					USERID,
+					AUTHTELLER,
+					TRANSNAME,
+					IPADDR,
+                    ACNO,
+                    CIFNAME
+		            )
+	   values(
+		#AcDate#,
+		#IssueOrgId#,
+	    #TellerJnlNo#, 
+	    #_JnlStatus#,	    
+		#_TransactionTimestamp#,
+	    #SubmitTeller#,
+	    #AuthTeller#,
+	    #_TransName#,
+	    #_IpAddr#,
+        #AcNo#,
+        #CifName#
+		
+		)
+	    
+	</insert>
+
+ 
+	<update id="updateTellerTrsLog" parameterClass="java.util.HashMap">
+	   update TELLERJNL set
+       STATUS =  #_JnlStatus#  ,    
+       <isNotEmpty  property="_RejCode">REJCODE = #_RejCode#  ,</isNotEmpty>
+	   <isNotEmpty  property="_RejMessage">REJMSG = #_RejMessage#, </isNotEmpty>
+       JNLDATA = #_JnlData#,
+       ENDTIME = #_EndTime#
+       
+       where ACDATE=#AcDate# and JNLNO=#TellerJnlNo# and ORGID=#IssueOrgId#
+	</update>
+
+
+	<resultMap class="java.util.HashMap" id="queryTellerTrsLogResult">
+		<result property="IBSJnlNo" column="IBSJNLNO" />
+		<result property="TrsCode" column="TRANSNAME" />		
+		<result property="TrsDate" column="ACDATE" />	
+		<result property="SubmitTeller" column="USERID" />
+        <result property="AuthTeller" column="AUTHTELLER"/>   		
+		<result property="AcNo" column="ACNO" />
+        <result property="CifName" column="CIFNAME"/>   		
+
+	</resultMap>
+	
+	<select id="queryTellerTrsLog" parameterClass="java.util.HashMap" resultMap="queryTellerTrsLogResult">
+	select  
+        
+	    concat(ORGID,JNLNO) as IBSJNLNO,
+        TRANSNAME,
+		ACDATE,
+	    USERID,
+		AUTHTELLER,
+        ACNO,
+        CIFNAME
+
+    from TELLERJNL 
+
+	 <dynamic prepend="where" >
+       <isNotEmpty  prepend="and"  property="TellerId"> USERID = #TellerId#  </isNotEmpty>
+       <isNotEmpty  prepend="and"  property="TrsCode"> TRANSNAME=#TrsCode# </isNotEmpty>
+       <isNotEmpty  prepend="and"  property="BeginDate"> AcDate &gt;= #BeginDate# </isNotEmpty>
+       <isNotEmpty  prepend="and"  property="EndDate"> AcDate &lt;= #EndDate# </isNotEmpty>
+    </dynamic>
+
+	</select>
+
+	
+
+
+</sqlMap>

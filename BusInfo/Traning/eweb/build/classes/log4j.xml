@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" threshold="null" debug="null">
+
+
+  <!-- ================================= -->
+  <!-- Preserve messages in a local file -->
+  <!-- ================================= -->
+
+  <!-- A time/date based rolling appender -->
+  <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="c:/tmp/test.log"/>
+    <!-- <param name="Encoding" value=""/> -->
+    <param name="BufferedIO" value="true"/>
+    <param name="BufferSize" value="1024"/>
+    <param name="Append" value="false"/>
+    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+
+    <param name="Threshold" value="INFO"/>
+
+    <layout class="org.apache.log4j.PatternLayout">
+      <!-- The default pattern: Date Priority [logger] Message\n -->
+      <param name="ConversionPattern" value="%d %-5p [%c{1}] %m%n"/>
+      <!-- The full pattern: Date MS Priority [logger] (Thread:NDC) Message\n
+      <param name="ConversionPattern" value="%d %-5r %-5p [%c{1}] (%t:%x) %m%n"/>
+       -->
+    </layout>	    
+  </appender>
+
+  <!-- ============================== -->
+  <!-- Append messages to the console -->
+  <!-- ============================== -->
+
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+    <param name="Threshold" value="debug"/>
+    <param name="Target" value="System.out"/>
+
+    <layout class="org.apache.log4j.PatternLayout">
+      <!-- The default pattern: Date Priority [logger] Message\n -->
+      <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+    </layout>
+  </appender>
+
+
+  <!-- ================ -->
+  <!-- Limit categories -->
+  <!-- ================ -->
+	<category name="com.ibatis" additivity="false">
+		<priority value="INFO" />
+		<appender-ref ref="STANDARD_CONSOLE" />
+	</category>
+	<category name="java.sql" additivity="false">
+		<priority value="DEBUG" />
+		<appender-ref ref="STANDARD_CONSOLE" />
+	</category>
+ 
+<!--  <logger name="java.sql.PreparedStatement" additivity="true"> -->
+  
+
+  
+  
+  <logger name="org" additivity="true">  
+    <level value="info"/>
+  </logger>
+  
+  
+ <logger name="com.csii.ibs.journal" additivity="true">  
+    <level value="debug"/>
+  </logger>  
+  
+  <logger name="com.csii.pe.service.event" additivity="true">  
+    <level value="warn"/>
+  </logger>  
+ 
+
+ 
+  <root>
+    <level value="info" /> 
+     <appender-ref ref="CONSOLE" /> 
+  </root>
+  
+  
+  
+</log4j:configuration>

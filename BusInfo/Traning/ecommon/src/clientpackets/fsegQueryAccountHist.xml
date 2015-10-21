@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE segment SYSTEM "packet.dtd">
+<segment>
+	<xmlTag><String name="AcNo"></String></xmlTag>
+	<xmlTag><String name="BeginDate"></String></xmlTag>
+	<xmlTag><String name="EndDate"></String></xmlTag>
+</segment>
+

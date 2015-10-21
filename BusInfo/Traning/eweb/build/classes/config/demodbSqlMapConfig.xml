@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+    PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+
+<sqlMapConfig>
+<!--	<settings cacheModelsEnabled="true" 
+	          driverHintsEnabled="true" 
+	          maxTransactions="10" 
+	          statementCacheSize="100"  
+	          maxExecute="300"/>
+-->
+    
+    <settings useStatementNamespaces="true"/>
+	<sqlMap resource="config/sql-mapping/common.xml"/>
+	<sqlMap resource="config/sql-mapping/authqueue.xml"/>			
+	<sqlMap resource="config/sql-mapping/entuser.xml"/>	  
+</sqlMapConfig>

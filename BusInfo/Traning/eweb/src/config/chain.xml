@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+<!-- Chains  -->
+
+	<chain id="nullChain">
+		<commands>
+			
+		</commands>
+	</chain>
+
+	<chain id="defaultChain">
+		<commands>
+			<ref>delegateCommand</ref>
+		</commands>
+	</chain>
+
+	<chain id="chainForRoleControl">
+		<commands>
+		    <ref>roleControlCommand</ref> 
+			<ref>validationCommand</ref>
+			<ref>ruleCommand</ref>	
+			<ref>delegateCommand</ref>	
+		</commands>
+	</chain>
+
+
+	<chain id="chainForRoleControl2">
+		<commands>
+		    <ref>roleControlCommand</ref> 
+		    <ref>tokenControlCommand</ref>  
+			<ref>validationCommand</ref>
+			<ref>ruleCommand</ref>	
+			<ref>delegateCommand</ref>
+		</commands>
+	</chain>
+
+
+	<chain id="chainForNotRoleControl">
+		<commands>
+			<ref>validationCommand</ref> 
+			<ref>ruleCommand</ref>	
+			<ref>delegateCommand</ref>			
+		</commands>
+	</chain>
+
+	<chain id="chainForLoginControl">
+		<commands>
+			<ref>validationCommand</ref>
+			<ref>loginControlCommand</ref>	
+			<ref>delegateCommand</ref>
+		</commands>
+	</chain>
+
+
+	<!-- Commands of chains  -->
+	<command id="delegateCommand" class="com.csii.pe.chain.command.DelegateCommand" />
+	<command id="validationCommand" class="com.csii.pe.chain.command.StyleValidationCommand" />
+
+	<command id="loginControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+		<list name="policies">
+			<ref>duplicateLoginControlPolicy</ref>
+		</list>
+	</command>
+
+
+	<command id="tokenControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+		<list name="policies">
+		<ref>tokenControlPolicy</ref>
+		</list>
+	</command>
+
+
+	<command id="ruleCommand" class="com.csii.pe.chain.command.RuleCommand" />
+
+	<command id="roleControlCommand" class="com.csii.pe.chain.command.AccessControlCommand">
+		<list name="policies">
+			<ref>simpleRoleControlPolicy</ref>
+		</list>
+
+	</command>
+	
+<!--
+ 
+    <command id="monitorCommand" class="com.csii.pe.monitor.activity.FilterMonitorCommand" >	
+       <ref name="eventDispatcher">eventDispatcher</ref>
+       <param name="ignorePattern">^pre[0-9a-zA-Z]*$</param>
+       <param name="fields">AcNo,AcNo2,Amount</param>
+    </command>
+    <bean id="notification" class="com.csii.pe.monitor.activity.attack.AttackNotification" >
+       <ref name="eventDispatcher">eventDispatcher</ref>    
+    </bean>
+-->
+    
+</config>

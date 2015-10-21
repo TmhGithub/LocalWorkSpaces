@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+    <!-- 通用二阶段交易模板（主要用于转账等涉及账务处理的交易） -->
+    <template id="twoPhaseTrsTemplate" class="com.csii.ibs.workflow.TwoPhaseTrsTemplate" chain="defaultChain">	 
+		<actions>
+			<ref name="preAction">preSubmitJournal</ref>
+			<ref name="aftAction">aftSubmitJournal</ref>
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>
+
+	<action id="preSubmitJournal" class="com.csii.ibs.journal.PreSubmitJournal">
+		<ref name="idFactory">idFactory</ref>
+		<param name="sql">common.insertTrsLog</param>
+	</action>
+	
+	<action id="aftSubmitJournal" class="com.csii.ibs.journal.UpdateJournal">
+		<param name="sql">common.updateTrsLog</param>
+	</action>
+
+	<!-- 通用查询类交易模板 -->
+	<template id="queryTrsTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="defaultChain">
+		<actions>	
+			<ref name="insertQueryJournal">insertQueryJournal</ref>
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>
+
+	<action id="insertQueryJournal" class="com.csii.ibs.journal.WriteJournal">
+		<ref name="idFactory">idFactory</ref>
+		<param name="sql">common.insertTrsLog</param>
+	</action>
+
+	<!-- TransactionConfig  -->
+	<!-- Actions  -->
+	<!-- system default actions -->
+
+	<action id="Placeholder" class="com.csii.pe.action.PlaceholderAction" />
+	
+	<!-- 交易发送到自带的报文模拟系统 -->
+	<action id="simBaseTwoPhaseAction" class="com.csii.ibs.action.IbsTwoPhaseAction" >
+	    <ref name="trsCodeResolver">hostTrsCodeResolver</ref>
+	    <ref name="returnCodeValidator">regExReturnCodeValidator</ref>
+		<param name="hostTransportName">simTransport</param>	    
+	</action>
+
+	<action id="simBaseQueryAction" class="com.csii.ibs.action.IbsQueryAction" >
+	    <ref name="trsCodeResolver">hostTrsCodeResolver</ref>
+	    <ref name="returnCodeValidator">regExReturnCodeValidator</ref>
+		<param name="hostTransportName">simTransport</param>	    
+	</action>
+
+   <bean id="hostTrsCodeResolver" class="com.csii.ibs.action.HostTrsCodeResolver" >
+      <map name="map">
+        <param name="QueryAccountHist">S0001</param>
+        <param name="EntInnerTransfer">S0002</param>
+        <param name="EntTransfer">S0003</param>
+        <param name="Transfer">S0004</param>
+      </map>
+    </bean>
+    
+    <bean id="regExReturnCodeValidator" class="com.csii.ibs.action.RegExReturnCodeValidator" >
+       <param name="condition">ReturnCode==null || !ReturnCode.equals("0000")</param>
+       <param name="keyName">ReturnCode</param>
+       <param name="messageKeyName">ReturnMsg,ExtraMsg</param>
+       <param name="errorKeyPrefix"></param>
+    </bean>
+
+</config>

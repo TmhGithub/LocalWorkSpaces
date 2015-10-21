@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+
+	<!-- TransactionConfig  -->
+	<!-- 查询交易明细 -->
+	<transaction id="QueryAccountHist" template="queryTrsTemplate">
+		<actions>
+			<ref name="action">simBaseQueryAction</ref>
+		</actions>		
+	</transaction>	
+	<transaction id="EntInnerTransfer" template="queryTrsTemplate">
+		<actions>
+			<ref name="action">simBaseQueryAction</ref>
+		</actions>		
+	</transaction>	
+	<transaction id="EntTransfer" template="queryTrsTemplate">
+		<actions>
+			<ref name="action">simBaseQueryAction</ref>
+		</actions>		
+	</transaction>	 
+	
+	<transaction id="Transfer" template="queryTrsTemplate">
+		<actions>
+			<ref name="action">simBaseQueryAction</ref>
+		</actions>		
+	</transaction>       
+
+	   
+
+</config>

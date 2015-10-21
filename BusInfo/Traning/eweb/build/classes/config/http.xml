@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<messageSource>
+		<param name="basenames">classpath:/config/msg/page,classpath:/config/msg/pemessages,classpath:/config/msg/messages,classpath:/config/msg/dictionary</param>
+		<param name="cacheSeconds">10</param>
+		<param name="fallbackToSystemLocale">false</param>
+		<param name="defaultEncoding">UTF-8</param>
+	</messageSource>
+
+	<localeResolver/>
+	
+
+	
+	<multipartResolver class="org.springframework.web.multipart.cos.CosMultipartResolver">
+		<param name="defaultEncoding">GBK</param>
+		<param name="uploadTempDir">/uploadTemp</param> 
+		<param name="maxUploadSize">2048000</param>
+	</multipartResolver>
+	
+
+
+	<!-- View Resolver  -->
+	
+	<bean id="mainViewResolver" class="com.csii.pe.channel.http.servlet.HashMapViewResolver" >	
+		<map name="mapping" >
+		
+			<bean name="default1" class="com.csii.pe.channel.http.servlet.ResubmitControlUrlView">
+     		<param name="cacheSeconds">0</param>			
+				<param name="prefix">/WEB-INF/zh_CN/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>	
+			    <ref name="resubmitControlPolicy" >resubmitControlPolicy</ref>							
+			</bean>
+		
+			<bean name="default" class="com.csii.pe.channel.http.servlet.UrlView">
+        		<param name="cacheSeconds">0</param>			
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">-1</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">true</param>	
+				<param name="forceXHTML">false</param>
+				<param name="forceUsingJSP20EL">true</param>	
+				<param name="forceJavaScriptDisabled">true</param>	
+				<bean name="clientTypeResolver" class="com.csii.pe.channel.http.servlet.ClientTypeResolverForTest">
+					<param name="xmlAcceptType">text/b2exml</param>
+			    </bean>	
+					
+			</bean>
+
+			<bean name="default2" class="com.csii.pe.channel.http.servlet.UrlView">
+        		<param name="cacheSeconds">0</param>			
+				<param name="prefix">/WEB-INF/i18n/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>	
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>	
+				<param name="forceJavaScriptDisabled">true</param>		
+			</bean>
+
+
+			<bean name="servlet" class="com.csii.pe.channel.http.servlet.UrlView">
+        		<param name="cacheSeconds">0</param>			
+				<param name="prefix"></param>
+				<param name="suffix">.do</param>
+				<param name="localeMode">0</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>				
+			</bean>
+			
+			<bean name="download" class="com.csii.pe.channel.http.servlet.DownloadView">
+			</bean>	
+
+			<bean name="stream" class="com.csii.pe.channel.http.servlet.StreamView">
+				<param name="contentType">text/plain;</param>
+				<param name="contentField">Content</param>
+			</bean>
+
+			<bean name="dynamic" class="com.csii.pe.channel.http.servlet.DynamicUrlView">
+        		<param name="cacheSeconds">0</param>			
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">-1</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>		
+				<map name="mapping">
+				  <param name="EntInnerTransfer">transfer/preEntInnerTransfer</param>
+				</map>
+			</bean>
+
+			<bean name="goback" class="com.csii.pe.channel.http.servlet.GoBackUrlView" >
+        		<param name="cacheSeconds">0</param>			
+				<param name="prefix">/WEB-INF/</param>
+				<param name="suffix">.jsp</param>
+				<param name="localeMode">-1</param>
+				<!-- -1 prefix; 0 none; 1 suffix -->
+				<param name="clientType">false</param>	
+				<param name="forceXHTML">true</param>
+				<param name="forceUsingJSP20EL">true</param>
+				<param name="defaultViewName">defaultSystemError</param>			
+			</bean>
+
+			<bean name="script" class="com.csii.pe.channel.http.servlet.ScriptView">
+			</bean>
+
+		</map>
+	</bean>
+
+
+	<transaction id="script" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">script,</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	
+	<!-- MVC controller    -->
+	<bean id="mainController" class="com.csii.pe.channel.http.servlet.MainController" >
+		<param name="loginView">login</param>		
+		<ref name="coreController">coreController</ref>
+		<ref name="constantsMap">constantsMap</ref>	
+		<!-- <ref name="idResolver">extendedIdResolver</ref>
+		<ref name="contextResolver">extendedContextResolver</ref> -->
+		<ref name="exceptionHandler">exceptionHandler</ref>
+	</bean>
+
+	<bean id="exceptionHandler" class="com.csii.pe.channel.http.servlet.ViewExceptionHandler" >
+		<param name="backToInputForValidationError">${exceptionHandler.backToInputForValidationError}</param>
+		<param name="cacheDataForErrorPage">${exceptionHandler.cacheDataForErrorPage}</param>
+		<param name="defaultErrorView">${exceptionHandler.defaultErrorView}</param>
+		<param name="defaultPublicErrorView">defaultPublicError</param>
+	</bean>
+	
+
+
+	<!-- <bean id="extendedIdResolver" class="com.csii.pe.channel.http.ExtendedTrsIdResolver" /> -->
+
+	<!-- <bean id="extendedContextResolver" class="com.csii.ibs.common.SimpleWAPContextResolver" >
+		<param name="test">${extendedContextResolver.test}</param>
+		<ref name="cssResoucePool">cachedCSSResourcePool</ref>
+	</bean> -->
+
+	<bean id="cachedCSSResourcePool" class="com.csii.ibs.common.CachedCSSResourcePool" />
+
+
+</config>

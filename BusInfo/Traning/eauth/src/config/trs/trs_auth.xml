@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<transaction id="AuthList" template="queryTemplate">
+		<actions>
+			<ref name="action" >ReadAuthQueueListAction</ref>			
+		</actions>	
+		<channels>
+			<channel type="http">
+				<param name="success">auth/AuthList</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<action id="ReadAuthQueueListAction" class="com.csii.ibs.workflow.queue.ReadListFromQueueAction" >
+	  <param name="listName">_AuthList</param>
+	</action>	
+	
+	
+    <transaction id="AuthDetail" template="queryTemplate">
+		<actions>
+			<ref name="action" >ReadAuthQueueDetailAction</ref>			
+		</actions>  
+		<fields>
+			<field name="_AuthJnlNo"></field>
+		</fields>	
+		<channels>
+			<channel type="http">
+				<param name="success">auth/AuthDetail</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<action id="ReadAuthQueueDetailAction" class="com.csii.ibs.workflow.queue.ReadTrsFromQueueAction" >
+	</action>	
+
+    <transaction id="AuthResult" template="authTrsWorkflow">
+		<fields>
+		  <field-list name="_AuthList" counter="counter" condition="_AuthJnlNo!=null">
+		    <fields>
+		  	<field name="_AuthJnlNo">jnlNoStyle</field>
+		  	</fields>
+		  </field-list>
+		</fields>
+	
+		<channels>
+			<channel type="http">
+				<param name="success">auth/AuthResult</param>
+			</channel>
+		</channels>
+	</transaction>
+
+
+</config>

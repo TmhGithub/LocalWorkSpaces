@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapNode SYSTEM "packet.dtd">
+<mapNode>
+	
+	<String name="default"></String>
+	
+
+    <Date name="java.sql.Date" pattern="yyyyMMdd" ></Date>
+
+	<xmlTag tagName="ac">
+		<String name="AcNo"></String>
+	</xmlTag>
+
+	<xmlTag tagName="acname">
+		<String name="AcName"></String>
+	</xmlTag>
+
+    <xmlTag>
+      <idxField name="List" >		    
+			<xmlMap tagName="Record" mapping="xmlmapping"  >			
+			</xmlMap>
+		</idxField>
+	</xmlTag>
+ 
+</mapNode>
+

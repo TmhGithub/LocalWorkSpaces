@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+
+	
+	<!-- property placeholder post-processor -->
+	<!--  
+		peconfigdev.properties:  It includes properties for DEVELOPMENT environment. Developers are free 
+								 to modify it in their laptops if needed, but are prohibited to commit to CVS in 
+								 the general cases with exception that the modification is usefull for others.
+		
+		peconfigtest.properties: It include properties for integrated TEST environment.
+		
+		peconfig.properties:	 It includes properties for PRODUCT environment. 
+		
+	-->
+
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+		<!-- Read the above description before changing the following parameter -->
+		<param name="location">classpath:/config/peconfigdev.properties</param>
+
+	</bean>
+
+	<bean id="jdbcAccessAwareProcessor" class="com.csii.pe.config.support.JdbcAccessAwareProcessor">	
+		<ref name="sqlExecutor">demodbSqlExecutor</ref>
+		<map name="sqlExecutors">
+			<ref name="demodb">demodbSqlExecutor</ref>
+		</map>
+
+		<ref name="sqlMap">demodbSqlMapExecutor</ref>
+		<map name="sqlMaps">
+			<ref name="demodb">demodbSqlMapExecutor</ref>
+		</map>
+
+		<ref name="transactionTemplate">demodbTxTemplate</ref>
+		<map name="transactionTemplates">
+			<ref name="demodb">demodbTxTemplate</ref>
+		</map>
+	</bean>
+	
+	<!--  DEMO DB Definiation -->	
+<!-- 
+	<bean id="demodbDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<param name="jndiName">jdbc/demodb</param>
+		<props name="jndiEnvironment">
+
+			<param name="java.naming.factory.initial">${java.naming.factory.initial}</param>
+			<param name="java.naming.provider.url">${java.naming.provider.url}</param>
+		</props>
+	</bean>
+
+ -->
+
+	<dataSource id="demodbDataSource" class="com.csii.pe.common.jdbc.BasicDataSource" destroy-method="close">		
+		<param name="driverClassName">${demodbDataSource.driverClassName}</param>
+        <param name="url">${demodbDataSource.url}</param>
+		<param name="username">${demodbDataSource.username}</param>
+		<param name="password">${demodbDataSource.password}</param>
+	</dataSource>
+
+	<!-- sqlExecutor configs -->
+	<sqlExecutor id="demodbSqlExecutor">
+		<param name="showSql">false</param>
+		<ref name="dataSource">demodbDataSource</ref>
+	</sqlExecutor>
+
+	<!-- sqlMap configs -->
+	<!-- demodb -->
+	<bean id="demodbSqlMapExecutor" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+			<ref name="dataSource">demodbDataSource</ref>
+		<bean name="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+			<param name="configLocation">classpath:/config/demodbSqlMapConfig.xml</param>
+		</bean>
+	</bean>
+
+	<!-- transaction template config -->
+	<!-- demodb -->
+	<transactionManager id="demodbTxManager">
+		<ref name="dataSource">demodbDataSource</ref>
+	</transactionManager>
+
+	<transactionTemplate id="demodbTxTemplate">
+		<ref name="transactionManager">demodbTxManager</ref>
+		<param name="propagationBehaviorName">PROPAGATION_REQUIRED</param>
+		<param name="isolationLevelName">ISOLATION_READ_COMMITTED</param>
+		<param name="readOnly">false</param>
+		<param name="timeout">15</param><!-- in seconds -->
+	</transactionTemplate>
+	
+	<!-- End of DEMO DB -->
+
+
+
+	<bean name="hostHeadFormatter" class="com.csii.ibs.common.UDFHeadFormatter">
+	</bean>
+
+ 
+	<!-- all id service -->
+	<idFactory id="idFactory2" class="com.csii.pe.service.id.SimpleIdFactory">
+		<param name="length">2</param>
+		<param name="datePrefix">true</param>
+		<param name="dateFormat">yyyyMMddHHmmssSSS</param>		
+	</idFactory>
+	
+	
+	<idFactory id="idFactory">
+		<param name="type">1</param>
+		<param name="length">5</param>
+		<param name="prefix">1</param>
+		<param name="dateFormat">yyyyMMddHHmmss</param>		
+		<param name="updateSql">update SEQNO set SEQNO=SEQNO+? where TYPE=?</param>
+		<param name="selectSql">select SEQNO from  SEQNO where TYPE=?</param>
+		<param name="insertSql">insert into SEQNO(TYPE, SEQNO) values(? , 0)</param>
+		<ref name="dataSource">demodbDataSource</ref>
+	</idFactory>
+
+	
+	<bean name="queueTransformerFactory" class="com.csii.pe.transform.TransformerFactory">
+			<param name="path">/extern/</param>
+
+	</bean>
+	
+	
+	
+
+	
+</config>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<transaction id="preQueryTrsHistory" template="emptyPageLoadertemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">query/QueryTrsHistory</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="QueryTrsHistory" template="queryTemplate">
+		<actions>
+			<ref name="action">QueryHistoryAction</ref>
+		</actions>
+		<fields>
+			<field name="AcNo">AcQueryPermissionStyle</field>
+			<field name="BeginDate">dateStyle{option=true}</field>
+			<field name="EndDate">dateStyle{option=true}</field>
+		</fields>
+		<channels>
+			<channel type="http">
+				<param name="success">query/QueryTrsHistoryRes</param>
+			</channel>
+		</channels>			
+	</transaction>
+
+	<action id="QueryHistoryAction" class="com.csii.ibs.wap.WAPCachedPagableQueryAction" parent="IbsQueryAction" >
+		<ref name="wapPageSizeResolver">simpleWAPPageSizeResolver</ref>
+	</action>
+	
+	<bean id="simpleWAPPageSizeResolver" class="com.csii.ibs.common.SimpleWAPPageSizeResolver"  />
+	
+	
+	<transaction id="cifInfoQry" template="queryTemplate">
+		<actions>
+			<ref name="action">CifInfoQryAction</ref>
+		</actions>
+		<channels>
+			<channel type="http">
+				<param name="success">query/CifInfoQry</param>
+			</channel>
+		</channels>			
+	</transaction>
+	
+	<action id="CifInfoQryAction" class="com.csii.ibs.query.action.CifInfoQryAction" >
+	</action>
+	
+	
+</config>

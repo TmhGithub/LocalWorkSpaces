@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+<!-- 
+    <map name="services">
+...
+			<ref name="CSXmlTransport">CSXmlTransport</ref>	   
+...
+	</map>
+-->
+
+	<transport id="CSXmlTransport" class="com.csii.pe.service.comm.TransformTransport">
+		<ref name="transformerFactory">CSXmlTransformerFactory</ref>
+		<ref name="transport">CSTcpTransport2</ref>
+		<param name="formatName">OutboundPacket</param>
+		<param name="parseName">xmlPacketParser</param>
+		<param name="debug">true</param>
+		<param name="dumpPath">c:/pedemo/logs</param>
+		<ref name="headFormatter">CSXmlHeadFormatter</ref>
+	</transport>
+
+
+	<bean name="CSXmlTransformerFactory" class="com.csii.pe.transform.XmlTransformerFactory">
+			<param name="path">/clientpackets</param>
+			<param name="debug">true</param>
+			<map name="parsers">
+				<ref name="xmlPacketParser">CSXmlPacketParser</ref>
+			</map>
+	</bean>	
+	<bean name="CSXmlPacketParser" class="com.csii.pe.transform.stream.xml.XmlStreamParser">
+			<param name="debug">true</param>
+			<param name="tagClassMapping">/clientpackets/xmltagmapping.properties</param>
+			<param name="tagAliasMapping">/clientpackets/xmlaliasmapping.properties</param>					
+	</bean>
+
+    <transport id="CSTcpTransport" class="com.csii.pe.service.comm.tcp.ClusterXMLTcpTransport" >
+     <param name="timeout">15000</param>
+  	 <param name="endTagName">Message</param>		
+    </transport>
+
+	<transport id="CSTcpTransport2" class="com.csii.pe.service.comm.tcp.SimpleXMLTcpTransport" >
+	 <param name="host">localhost</param>
+	 <param name="port">6001</param>
+     <param name="timeout">15000</param>
+  	 <param name="endTagName">Message</param>		
+    </transport>
+
+
+	<bean name="CSXmlHeadFormatter" class="com.csii.ibs.common.CSXmlHeadFormatter">
+	</bean>	
+
+	
+</config>

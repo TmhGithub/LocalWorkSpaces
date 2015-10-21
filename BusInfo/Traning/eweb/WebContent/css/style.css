@@ -1,0 +1,213 @@
+body {
+	font-size: 9pt;
+	font-family: "����","Tahoma","Arial";
+	border-top-width: 0Px; 
+	padding-right: 0Px; 
+	padding-left: 0Px; 
+	border-left-width: 0Px; 
+	border-bottom-width: 0Px; 
+	border-right-width: 0Px;
+	SCROLLBAR-FACE-COLOR: #cbcbcb; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff; 
+	SCROLLBAR-SHADOW-COLOR: #828282;
+	SCROLLBAR-3DLIGHT-COLOR: #828282; 
+	SCROLLBAR-ARROW-COLOR: #797979; 
+	SCROLLBAR-TRACK-COLOR: #DBDBDB; 
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff
+}
+
+P { text-indent: 2em }
+input			{font-size: 9pt; color: #333333;}
+
+/* links style */
+A.leftmenu:link 	{color: #034792; text-decoration: none;}
+A.leftmenu:hover 	{color: #034792; text-decoration: none;}
+A.leftmenu:visited 	{color: #034792; text-decoration: none;}
+
+A.tle:link 		{font-size: 10.5pt;color: #FF7E00; text-decoration: underline;}
+A.tle:hover 		{font-size: 10.5pt;color: #FF7E00; text-decoration: none;}
+A.tle:visited 		{font-size: 10.5pt;color: #FF7E00; text-decoration: underline;}
+
+A:link			{color: #024BB7; text-decoration: none;}
+A:visited 		{color: #024BB7; text-decoration: none;}
+A:hover 		{color: #FF0000; text-decoration: none;}
+
+A.news:link		{ color: #666666; text-decoration: underline ; font-size: 9pt; }
+A.news:visited		{ color: #666666; text-decoration: underline ; font-size: 9pt; }
+A.news:hover		{ color: #666666; text-decoration: none ; font-size: 9pt; }
+
+/* font style */
+.f9gray 		{font-size: 9pt; color: #666666;}
+.f9orange 		{font-size: 9pt; color: #FF6000;; font-weight: bold}
+.f9boldgray	 	{font-size: 9pt;color: #666666; font-weight: bold;}
+.f11gray 		{font-size: 10.5pt; color: #666666;}
+.f11orange 		{font-size: 10.5pt; color: #FF6000;; font-weight: bold}
+.f11boldblue 	{font-size: 10.5pt; color: #003870; font-weight: bold;}
+
+.title1 		{font-size: 13.5pt; color: #000000; font-weight: bold; font-family:"����","Tahoma","Arial";}
+.title2			{font-size: 11.5pt; color: #FF6000; font-weight: bold; font-family:"����","Tahoma","Arial";}
+.title3			{font-size: 9pt; color: #666666; font-weight: bold; font-family:"����","Tahoma","Arial";}
+.info			{font-size: 9pt; color: #B75B01; font-weight: bold; font-family:"����","Tahoma","Arial";}
+.errors 		{font-size: 9pt; color: #FF6000; font-weight: normal; font-family:"����","Tahoma","Arial";}
+.normal			{font-size: 9pt; font-weight: normal; font-family:"����","Tahoma","Arial";}
+
+.loginInput { color: #FFFFFF; font-family: "����","Tahoma","Arial"; font-size: 11.5pt; border-right: 3px; border-top: 3px; border-left: 3px; border-bottom: 3px; background: url(../images/bg_input.gif); width: 103px; height: 19px}
+.loginPasswd { color: #FFFFFF; font-family: "����","Tahoma","Arial"; font-size: 6pt; padding-top: 5px; border-right: 3px; border-top: 3px; border-left: 3px; border-bottom: 3px; background: url(../images/bg_input.gif); width: 103px; height: 19px}
+.loginButton { color: #FFFFFF; font-family: "����","Tahoma","Arial"; font-size: 10.5pt; padding-top: 3px; border-right: 3px; border-top: 3px; border-left: 3px; border-bottom: 3px; background: url(../images/bg_button.gif); width: 77px; height: 21px; cursor: hand}
+.loginTitle	{font-size: 10.5pt; color: #FFFFFF; font-family:"����","Tahoma","Arial"; padding-top: 4px;}
+
+.location {
+	FONT-FAMILY: "����","Tahoma";
+	FONT-SIZE: 14px;
+	FONT-WEIGHT: bold;
+   vertical-align: middle;
+
+}
+.ListPageScroll {
+	BACKGROUND-COLOR: #ddedfb;	
+	COLOR: #000000;	
+	FONT-FAMILY: "宋体", "Tahoma";
+	FONT-SIZE: 9px;
+}
+.ListTableHead {
+	BACKGROUND-COLOR: #ddedfb;	
+	COLOR: #000000;	
+	FONT-FAMILY: "宋体", "Tahoma";
+	FONT-SIZE: 12px;
+	FONT-WEIGHT: bold;	
+}
+.ListTableData {
+	BACKGROUND-COLOR: #ffffff;	
+	COLOR: #000000;	
+	FONT-FAMILY: "宋体", "Tahoma";
+	FONT-SIZE: 12px;
+}
+.ListTableData {
+	BACKGROUND-COLOR: #ffffff;	
+	COLOR: #000000;	
+	FONT-FAMILY: "宋体","Tahoma";
+	FONT-SIZE: 12px;
+}
+.ListTableFoot {
+	BACKGROUND-COLOR: #ffffff;	
+	COLOR: #000000;	
+	FONT-FAMILY: "宋体", "Tahoma";
+	FONT-SIZE: 12px;
+	FONT-WEIGHT: bold;
+}
+
+.monitor {
+	font-size: 11pt;
+	font-family: "����","Tahoma","Arial";	
+	line-height:13pt;
+	height:20;
+	color:#0000CC;
+	padding-left: 10px;
+}
+.table-class {
+	border-collapse:collapse;
+	border-color:#b9ccd4;
+	border-width: 1px;
+	border-style: solid;
+    vertical-align: middle;
+    align:center;
+}
+.table-title {
+	/*background-image: url(./images/table-title.gif);
+	background-repeat: repeat-y;*/
+	font-size: 9pt;
+	font-weight:bold;
+	font-family: "����","Tahoma","Arial";
+	vertical-align: middle;
+	background-color: #C9C9C9;
+}
+.trTitle {	
+	font-size: 9pt;
+	font-weight:bold;
+	font-family: "����","Tahoma","Arial";
+	vertical-align: middle;
+	background-color: #d7ebf3;
+	padding-right: 10px;
+}
+
+.trValue {
+	font-size: 9pt;
+	font-family: "����","Tahoma","Arial";
+	vertical-align: middle;
+	color: #666666
+	border: #9babbb 1pt solid;
+}
+.tdTitle {
+	font-size: 9pt;	
+	font-family: "����","Tahoma","Arial";
+	line-height:11pt;
+	border-collapse:collapse;
+	background-color:#d5eaba;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.tdValue {
+	font-size: 9pt;
+	font-family: "����","Tahoma","Arial";	
+	line-height:11pt;
+	border-collapse:collapse;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.tabTitle {	
+	font-size: 9pt;
+	font-weight:bold;
+	font-family: "����","Tahoma","Arial";
+	vertical-align: middle;
+}
+.tdError {	
+	font-size: 9pt;
+	color: red;
+	font-family: "����","Tahoma","Arial";
+	vertical-align: middle;
+}
+
+.button {
+	font-size: 9pt;
+	line-height:1;
+	color: #000000;
+	background-repeat: no-repeat;
+	background-position: left top;
+	white-space: normal;
+	border: 1px outset #1111FF;
+	padding: 1px;
+}
+/* 小虎添加  登录页面 */
+
+.body_bg{
+	background-image: url(images/loginnew_01.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+/* 小虎添加  选择中英文版本页面 */
+
+.webbody_bg{
+	background-color: #9BCDE0;
+	text-align: left;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+
+/* 小虎添加  内页 */
+.neiyebody_bg{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.baizi{
+	color: #FFFFFF;
+}

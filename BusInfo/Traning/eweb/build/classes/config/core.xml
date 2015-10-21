@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<!-- Controller that create Context and call CoreController  -->
+	<userRegistry id="failureUserRegistry" class="com.csii.pe.accesscontrol.DelayControlResourceList" />
+	
+   <userRegistry id="successUserRegistry" class="com.csii.pe.accesscontrol.lc.OnlineUserRegistry" /> 
+	
+<!--   <userRegistry id="successUserRegistry" class="com.csii.pe.accesscontrol.DummyResourceList" />  -->
+   
+	<!-- Policies -->
+	<policy id="duplicateLoginControlPolicy" class="com.csii.pe.accesscontrol.DelayControlPolicy">
+		<ref name="uniqueIdResolver">uniqueUserIdResolver</ref>
+		<ref name="attackedResourceList">failureUserRegistry</ref>
+		<param name="shortDelayTime">5</param>
+		<param name="longDelayTime">60</param>
+		<param name="baseCounter">3</param>
+		<param name="warningCounter">1</param>
+		<!--
+	    <ref name="notification">notification</ref> 
+	    -->
+	</policy>
+	
+
+
+    <!-- Resubmit control policy -->
+	<policy id="resubmitControlPolicy" class="com.csii.pe.accesscontrol.dc.ResubmitControlPolicy">
+		<ref name="uniqueIdResolver">pageIdResolver</ref>
+		<param name="controlListName">_DCLIST</param>
+		<param name="delayTime">15</param>
+		<param name="maxEntryNumber">3</param>
+	</policy>
+	
+	<bean id="pageIdResolver" class="com.csii.pe.accesscontrol.SimpleUniqueIdResolver">
+	  <param name="variableName">_PageId</param>
+	</bean>
+	
+	
+	<policy id="tokenControlPolicy" class="com.csii.pe.accesscontrol.token.TokenControlPolicy">
+		<ref name="tokenManager">tokenManager</ref>
+		<param name="messageKey">validation.resubmit_same_token</param>
+	</policy>
+
+	<bean id="tokenManager" class="com.csii.pe.accesscontrol.token.ResubmitTokenManager">
+		<param name="tokenName">_tokenName</param>
+		<param name="tokenListName">_DCTOKENLIST</param>
+		<param name="delayTime">30</param>
+		<param name="maxEntryNumber">3</param>
+	</bean>	
+	
+	
+	<action id="tokenAction" class="com.csii.pe.accesscontrol.token.TokenPageLoader">	
+		<ref name="tokenManager">tokenManager</ref>	
+	</action>
+	
+	
+
+
+	<bean id="uniqueUserIdResolver" class="com.csii.pe.accesscontrol.lc.UniqueUserIdResolver">
+	  <param name="variableName">UserId</param>
+	</bean>
+
+	<bean id="simpleRoleControlPolicy" class="com.csii.pe.accesscontrol.rc.SimpleRoleControlPolicy">
+		<ref name="roleResolver">transactionRoleResolver</ref>
+		<param name="rejectInvalidUser">true</param>
+	</bean>
+
+	<bean id="transactionRoleResolver" class="com.csii.pe.accesscontrol.rc.support.TransactionRoleResolver"></bean>
+
+
+	<action id="preSubmitAccessLog" class="com.csii.ibs.journal.PreSubmitJournal">
+		<ref name="idFactory">idFactory</ref>
+		<param name="sql">common.insertAccessLog</param>
+	</action>
+	<action id="aftSubmitAccessLog" class="com.csii.ibs.journal.UpdateJournal">
+		<param name="sql">common.updateAccessLog</param>
+	</action>
+
+	<!-- CoreController  -->
+	<coreController id="coreController" class="com.csii.pe.core.CoreControllerImpl" />
+	
+
+	<bean id="generalAwareProcessor" class="com.csii.pe.config.support.GeneralAwareProcessor">
+		
+		<map name="validators">
+  			<ref name="option" >optionValidator</ref>
+  			<ref name="range" >rangeValidator</ref>
+  			<ref name="length" >lengthValidator</ref>
+  			<ref name="pattern" >patternValidator</ref>
+  			<ref name="type" >typeValidator</ref>  	
+  			<ref name="acPermission" >acPermissionValidator</ref>  			  			  			  			  					  			  			  			
+		</map>
+
+		<map name="services">
+			<ref name="CSXmlTransport">CSXmlTransport</ref>	   		
+		   <ref name="idFactory">idFactory</ref>
+		</map>
+	</bean>
+	
+</config>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+
+	<!-- TransactionConfig  -->
+	<!-- login control -->
+	<transaction id="prelogin" template="emptytemplate">
+		
+		<channels>
+			<channel type="http">
+				<param name="success">login</param>
+			</channel>
+		</channels>
+	</transaction>
+
+
+	<!-- main page loaders -->
+	<transaction id="headBarIn" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">frame/headBarIn</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<transaction id="welcome" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">welcome</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	
+	<transaction id="left" template="DynamicTemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">frame/left9999</param>
+			</channel>
+		</channels>
+	</transaction>
+	<transaction id="right" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">frame/right</param>
+			</channel>
+		</channels>
+	</transaction>
+	<transaction id="footBar" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">frame/footBar</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="leftbar" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">frame/leftbar</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<!-- end of loaders -->
+
+	<transaction id="menu" template="emptyPageLoadertemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">menu</param>
+			</channel>
+		</channels>
+	</transaction>
+	
+	<transaction id="topmenu" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">topmenu</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<transaction id="goback" template="emptytemplate">
+		<channels>
+			<channel type="http">
+				<param name="success">goback,defaultError</param>
+			</channel>
+		</channels>
+	</transaction>
+
+
+	<!-- end of loaders -->
+	<transaction id="logout" template="DynamicTemplate">
+		<actions>
+			<ref name="writeLogoutAccessLog">WriteLogoutAccessLog</ref>
+			<ref name="act01">LogoutAction</ref>
+		</actions>
+		<channels>
+			<channel type="http">
+				<param name="success">logout</param>
+			</channel>
+		</channels>
+	</transaction>
+
+	<action id="WriteLogoutAccessLog" class="com.csii.ibs.journal.WriteJournal">
+		<ref name="idFactory">idFactory</ref>
+		<param name="sql">common.insertAccessLog</param>
+	</action>
+
+	
+	
+</config>

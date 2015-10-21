@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT inboundPacket  (segment,include,(mapAlias)?) >
+<!ATTLIST inboundPacket
+	name CDATA "packet"
+	nameOfBodyLength CDATA "BodyLength"
+	formatPrefix CDATA "format"
+	parsePrefix CDATA "parse"
+	
+>
+
+<!ELEMENT outboundPacket (segment,include,include?,(mapAlias)?) >
+<!ATTLIST outboundPacket
+	name CDATA "packet"
+	nameOfBodyLength CDATA "BodyLength"
+	nameOfReturnCode CDATA  #IMPLIED
+	valueOfReturnCode CDATA #IMPLIED
+	formatPrefix CDATA "format"
+	parsePrefix CDATA "parse"
+	
+>
+
+
+<!ELEMENT iso8583Packet  (bitMap,include,iso8583Segment?,(mapAlias)?) >
+<!ATTLIST iso8583Packet
+	name CDATA "packet"
+	
+>
+
+<!ELEMENT include  (#PCDATA) >
+<!ATTLIST include
+	include CDATA #IMPLIED
+	keyName CDATA #IMPLIED
+	defaultInclude CDATA #IMPLIED	
+ 
+>
+
+<!ELEMENT bitMap (#PCDATA)>
+<!ATTLIST bitMap
+	defaultValue CDATA #IMPLIED
+>
+
+
+
+<!ELEMENT mapAlias  (mapAlias |elementAlias)+ >
+<!ATTLIST mapAlias
+	name CDATA #REQUIRED
+	alias CDATA #IMPLIED
+>
+
+
+
+
+<!ELEMENT elementAlias (#PCDATA)>
+<!ATTLIST elementAlias
+	name CDATA #REQUIRED
+	alias CDATA #IMPLIED
+
+>
+
+
+
+
+
+<!ELEMENT iso8583Fields  (fix|var|varCounter|segment|fixField|fixDate|fixTimestamp|fixTime|fixAmount|fixBigDecimal| fixString | fixNumber|fixLong|fixInteger| fixBinaryNumber  |fixPackDecimal|fixBullBCD | varField| varString |varPackDecimal|varBullBCD|varNumber|varLong|varInteger| varBinaryNumber | varDate|varTimestamp|varTime|varAmount|varBigDecimal| idxField )+ >
+<!ATTLIST iso8583Fields
+	bitMap CDATA #REQUIRED
+>
+
+<!ELEMENT iso8583Segment  (fix|var|varCounter|segment|fixField|fixDate|fixTimestamp|fixTime|fixAmount|fixBigDecimal| fixString | fixNumber|fixLong|fixInteger| fixBinaryNumber  |fixPackDecimal|fixBullBCD | varField| varString |varPackDecimal|varBullBCD|varNumber|varLong|varInteger| varBinaryNumber | varDate|varTimestamp|varTime|varAmount|varBigDecimal| idxField )+ >
+<!ATTLIST iso8583Segment
+	bitMap CDATA #REQUIRED
+>
+
+<!ELEMENT segment  (segment|xmlTag|Group |varCounter|skip |fixField|fixDate|fixTimestamp|fixTime|fixAmount|fixBigDecimal| fixString | fixNumber|fixLong|fixInteger| fixBinaryNumber  |fixPackDecimal|fixBullBCD | varField| varString |varPackDecimal|varBullBCD|varNumber|varLong|varInteger| varBinaryNumber | varDate|varTimestamp|varTime|varAmount|varBigDecimal| idxField  )* >
+<!ATTLIST segment
+	name CDATA "segment"
+>
+
+<!ELEMENT Group  (Group|xmlTag|include|Field|Date|Timestamp|Time|Amount|BigDecimal|String|Number|Long|Integer)* >
+<!ATTLIST Group
+	name CDATA "group"
+	tagName CDATA #IMPLIED
+	option (true|false) 'false' 
+	xmlHead CDATA #IMPLIED
+	format (true|false) 'true' 
+	
+>
+
+
+<!ELEMENT xmlTag (Group|Field|Date|Timestamp|Time|Amount|BigDecimal|String|Number|Long|Integer)>
+<!ATTLIST xmlTag
+	tagName CDATA #IMPLIED
+	format (true|false) 'true' 
+	skipEmpty (true|false) 'false' 	
+>
+
+
+<!ELEMENT Field (#PCDATA)>
+<!ATTLIST Field
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT String (#PCDATA)>
+<!ATTLIST String
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	trim (true|false) 'true'
+	u3000Trim (true|false) 'false'
+>
+
+<!ELEMENT Number (#PCDATA)>
+<!ATTLIST Number
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+<!ELEMENT Long (#PCDATA)>
+<!ATTLIST Long
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+<!ELEMENT Integer (#PCDATA)>
+<!ATTLIST Integer
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+
+
+<!ELEMENT Amount (#PCDATA)>
+<!ATTLIST Amount
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	decimal CDATA "2"
+	signed  (true|false)  'false'
+>
+
+<!ELEMENT BigDecimal (#PCDATA)>
+<!ATTLIST BigDecimal
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT Date (#PCDATA)>
+<!ATTLIST Date
+	name CDATA #REQUIRED
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT Time (#PCDATA)>
+<!ATTLIST Time
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT Timestamp (#PCDATA)>
+<!ATTLIST Timestamp
+	name CDATA #REQUIRED
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+
+<!ELEMENT externAlias  (externMap|externList|fixDate|fixTimestamp|fixTime|fixAmount|fixBigDecimal| fixString |fixLong|fixInteger| varString |varLong|varInteger| varDate|varTimestamp|varTime|varAmount|varBigDecimal  )* >
+<!ATTLIST externAlias
+	name CDATA "extern"
+	mapping CDATA "/extern/aliasmapping.properties"
+>
+
+<!ELEMENT externMap (#PCDATA)>
+<!ATTLIST externMap
+	name CDATA "map"
+>
+
+<!ELEMENT externList (#PCDATA)>
+<!ATTLIST externList
+	name CDATA "list"
+>
+
+<!ELEMENT skip (#PCDATA)>
+<!ATTLIST skip
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	filling CDATA " "
+>
+
+<!ELEMENT fix (segment)>
+<!ATTLIST fix
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+>
+
+
+
+<!ELEMENT fixField (#PCDATA)>
+<!ATTLIST fixField
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT fixString (#PCDATA)>
+<!ATTLIST fixString
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	trim (true|false) 'true'
+	u3000Trim (true|false) 'false'
+>
+
+<!ELEMENT fixNumber (#PCDATA)>
+<!ATTLIST fixNumber
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+<!ELEMENT fixLong (#PCDATA)>
+<!ATTLIST fixLong
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+<!ELEMENT fixInteger (#PCDATA)>
+<!ATTLIST fixInteger
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "false"
+>
+
+
+<!ELEMENT fixBinaryNumber (#PCDATA)>
+<!ATTLIST fixBinaryNumber
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0x0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	add CDATA "0"
+	minus CDATA "0"
+	binary CDATA "true"
+>
+
+<!ELEMENT fixPackDecimal (#PCDATA)>
+<!ATTLIST fixPackDecimal
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0x0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	decimal CDATA "2"
+	signed  (true|false)  'true'	
+>
+
+<!ELEMENT fixBullBCD (#PCDATA)>
+<!ATTLIST fixBullBCD
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0x0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	decimal CDATA "0"
+	signed  (true|false)  'false'	
+>
+
+
+<!ELEMENT fixAmount (#PCDATA)>
+<!ATTLIST fixAmount
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+	decimal CDATA "2"
+	signed  (true|false)  'false'
+>
+
+<!ELEMENT fixBigDecimal (#PCDATA)>
+<!ATTLIST fixBigDecimal
+	name CDATA #REQUIRED
+	length CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'false' 
+	filling CDATA "0"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT fixDate (#PCDATA)>
+<!ATTLIST fixDate
+	name CDATA #REQUIRED
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT fixTime (#PCDATA)>
+<!ATTLIST fixTime
+	name CDATA #REQUIRED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT fixTimestamp (#PCDATA)>
+<!ATTLIST fixTimestamp
+	name CDATA #REQUIRED
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	leftJustified (true|false) 'true' 
+	filling CDATA " "
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+
+<!--
+ supported type:
+  B: binary type length, for example, "B", "BB"
+  L: visual character type length, "L", "LL", "LLL"
+  D: delimetr "D0x20"
+  R: refer to another field as length "Rrecordnum"
+-->
+
+<!ELEMENT var (segment)>
+<!ATTLIST var
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+>
+
+<!ELEMENT varField (#PCDATA)>
+<!ATTLIST varField
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+>
+
+<!ELEMENT varString (#PCDATA)>
+<!ATTLIST varString
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+    trim	(true|false) 'true'
+	u3000Trim (true|false) 'false'    
+>
+
+<!ELEMENT varNumber (#PCDATA)>
+<!ATTLIST varNumber
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	binary CDATA "false"
+>
+
+<!ELEMENT varLong (#PCDATA)>
+<!ATTLIST varLong
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	binary CDATA "false"
+>
+
+<!ELEMENT varInteger (#PCDATA)>
+<!ATTLIST varInteger
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	binary CDATA "false"
+>
+
+
+<!ELEMENT varBinaryNumber (#PCDATA)>
+<!ATTLIST varBinaryNumber
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	binary CDATA "true"
+>
+
+<!ELEMENT varPackDecimal (#PCDATA)>
+<!ATTLIST varPackDecimal
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	length CDATA #REQUIRED
+	decimal CDATA "2"
+	signed  (true|false)  'true'		
+>
+
+<!ELEMENT varBullBCD (#PCDATA)>
+<!ATTLIST varBullBCD
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+	length CDATA #REQUIRED
+	decimal CDATA "0"
+	signed  (true|false)  'false'		
+>
+
+
+<!ELEMENT varAmount (#PCDATA)>
+<!ATTLIST varAmount
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	length CDATA #REQUIRED
+	option  (true|false) 'true'	
+	decimal CDATA "2"
+	signed  (true|false)  'false'	
+>
+
+<!ELEMENT varBigDecimal (#PCDATA)>
+<!ATTLIST varBigDecimal
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+	defaultValue CDATA #IMPLIED
+	option  (true|false) 'true'	
+>
+
+
+<!ELEMENT varDate (#PCDATA)>
+<!ATTLIST varDate
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED	
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT varTimestamp (#PCDATA)>
+<!ATTLIST varTimestamp
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED	
+	pattern CDATA #IMPLIED
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+
+<!ELEMENT varTime (#PCDATA)>
+<!ATTLIST varTime
+	name CDATA #REQUIRED
+	type CDATA #REQUIRED	
+	encoding CDATA "gbk"
+	option  (true|false) 'true'
+	defaultValue CDATA #IMPLIED
+>
+
+<!ELEMENT idxField ((fixCounter|varCounter),segment )>
+<!ATTLIST idxField
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT fixCounter (#PCDATA)>
+<!ATTLIST fixCounter
+	value CDATA #REQUIRED
+>
+
+<!ELEMENT varCounter (#PCDATA)>
+<!ATTLIST varCounter
+    name CDATA "counter"
+	type CDATA #REQUIRED
+	encoding CDATA "gbk"
+>
+
+

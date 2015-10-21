@@ -1,0 +1,186 @@
+<?xml version="1.0"  encoding="GB2312"?>
+
+<Map>
+
+<ReturnCode>0000</ReturnCode>
+
+<List>
+  <Map>
+	<TrsDate>2007-05-02</TrsDate>
+	<Amount>223.44</Amount>
+	<CD>C</CD>
+	<Balance>223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-01-03</TrsDate>
+	<Amount>1000.45</Amount>
+	<CD>D</CD>
+	<Balance>2230.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-11-04</TrsDate>
+	<Amount>2000.56</Amount>
+	<CD>C</CD>
+	<Balance>2223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>4455</Remark>
+  </Map>
+ 
+  <Map>
+	<TrsDate>2007-01-12</TrsDate>
+	<Amount>123.24</Amount>
+	<CD>C</CD>
+	<Balance>123.24</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-01-13</TrsDate>
+	<Amount>1100.00</Amount>
+	<CD>D</CD>
+	<Balance>2235.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-01-06</TrsDate>
+	<Amount>3000.00</Amount>
+	<CD>C</CD>
+	<Balance>61223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  <Map>
+	<TrsDate>2007-04-12</TrsDate>
+	<Amount>1423.44</Amount>
+	<CD>C</CD>
+	<Balance>1423.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>4455</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-05-03</TrsDate>
+	<Amount>1040.50</Amount>
+	<CD>D</CD>
+	<Balance>2243.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-06-04</TrsDate>
+	<Amount>1000</Amount>
+	<CD>D</CD>
+	<Balance>12323.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  <Map>
+	<TrsDate>2007-08-02</TrsDate>
+	<Amount>1223.44</Amount>
+	<CD>C</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-09-03</TrsDate>
+	<Amount>400.00</Amount>
+	<CD>C</CD>
+	<Balance>4223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>444</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-08-04</TrsDate>
+	<Amount>1000</Amount>
+	<CD>D</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  <Map>
+	<TrsDate>2007-11-02</TrsDate>
+	<Amount>2123.44</Amount>
+	<CD>C</CD>
+	<Balance>2123.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-01-03</TrsDate>
+	<Amount>500.45</Amount>
+	<CD>D</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-01-08</TrsDate>
+	<Amount>1000</Amount>
+	<CD>C</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  <Map>
+	<TrsDate>2007-09-08</TrsDate>
+	<Amount>1123.44</Amount>
+	<CD>C</CD>
+	<Balance>1123.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-01-22</TrsDate>
+	<Amount>100</Amount>
+	<CD>D</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-09-04</TrsDate>
+	<Amount>1000</Amount>
+	<CD>C</CD>
+	<Balance>1223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  <Map>
+	<TrsDate>2007-08-02</TrsDate>
+	<Amount>123.44</Amount>
+	<CD>D</CD>
+	<Balance>123.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+    <Map>
+	<TrsDate>2007-06-06</TrsDate>
+	<Amount>100.44</Amount>
+	<CD>D</CD>
+	<Balance>223.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>
+  
+    <Map>
+	<TrsDate>2007-04-22</TrsDate>
+	<Amount>10400.44</Amount>
+	<CD>C</CD>
+	<Balance>12423.44</Balance>
+	<issueOrgNo>001</issueOrgNo>
+	<Remark>44</Remark>
+  </Map>           
+</List>
+
+</Map>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<transformerFactory id="eventTransformerFactory" class="com.csii.pe.transform.TransformerFactory">
+	   <param name="path">/extern/</param>
+	</transformerFactory>	
+
+	<!-- heart beat -->
+	
+	<bean id="HeartBeatEvent2Call" class="com.csii.pe.service.event.support.Event2Call" >	
+	    <param name="id">CPSS,EAI</param>
+		<ref name="eventDispatcher">HeartBeatEventDispatcher</ref>
+		
+		<map name="mapping">
+		    <map name="20000" >
+		      <ref name="object">relayTcpTransport</ref>		    
+		      <param name="method">register</param> 
+		      <map   name="parameters">
+		        <param name="Id">java.lang.String</param>
+		        <param name="Ip">java.lang.String</param>		        
+		        <param name="Port">java.lang.Integer</param>		        
+		      </map>	      		      		      		      	      
+		    </map>
+		    <map name="20001" >
+		      <ref name="object">CSTcpTransport</ref>		    
+		      <param name="method">register</param> 
+		      <map   name="parameters">
+		        <param name="Id">java.lang.String</param>
+		        <param name="Ip">java.lang.String</param>		        
+		        <param name="Port">java.lang.Integer</param>		        
+		      </map>	      		      		      		      	      
+		    </map>
+		    
+		</map>
+	</bean>
+
+	<server id="HeartBeatUDPServer" class="com.csii.pe.service.comm.udp.MulticastUDPServer" init-method="start" destroy-method="shutdown" >
+		<param name="name">HeartBeat-UDP-ProxyServer</param>
+		<param name="address">${event.udpTransport.address}</param>
+		<param name="port">${event.udpTransport.port}</param>
+		<param name="soTimeout">0</param>
+		<ref name="executor">HeartBeatEventThreadPool</ref>
+		<ref name="handler">HeartBeatEventHandler</ref>
+		<param name="receiveBufferLength">80000</param>
+	</server>
+
+
+	<executor id="HeartBeatEventThreadPool">
+		<param name="name">Event-ThreadPool</param>
+		<param name="initSize">2</param>
+		<param name="maxSize">2</param>
+		<param name="minSize">2</param>
+    	<param name="queueSize">100</param>    
+		<param name="keepAliveTime">300</param>
+	</executor>
+	
+	<bean id="HeartBeatEventHandler" class="com.csii.pe.channel.stream.SimpleRemoteEventHandler" >
+	   <ref name="eventDispatcher">HeartBeatEventDispatcher</ref>
+   	   <ref name="transformerFactory">eventTransformerFactory</ref>
+  	   <param name="parser">externAlias</param>   	   
+	</bean>
+	
+	<server id="HeartBeatEventDispatcher" class="com.csii.pe.service.event.EventDispatcherImpl" init-method="start" destroy-method="shutdown">
+		<param name="name">HeartBeatEventDispatcher</param>
+	</server>
+	
+
+
+    <!-- heart beat -->
+    
+    <!-- monitor -->
+	<server id="eventDispatcher" class="com.csii.pe.service.event.EventDispatcherImpl" init-method="start" destroy-method="shutdown">
+		<param name="name">eventDispatcher</param>
+	    <ref name="executor">eventThreadPool</ref> 
+	</server>
+	
+	<executor id="eventThreadPool">
+		<param name="name">Event-ThreadPool</param>
+		<param name="initSize">1</param>
+		<param name="maxSize">2</param>
+		<param name="minSize">1</param>
+    	<param name="queueSize">500</param>    
+		<param name="keepAliveTime">300</param>
+	</executor>
+	
+	<bean id="remoteEventAgent" class="com.csii.pe.service.event.support.RemoteEventAgent" >
+	    <param name="id">monitor</param>
+		<ref name="eventDispatcher">eventDispatcher</ref>	
+	   <ref name="transport">udpTransport</ref>
+   	   <ref name="transformerFactory">eventTransformerFactory</ref>
+  	   <param name="format">externAlias</param>   	   
+	</bean>
+		
+	<transport id="udpTransport" class="com.csii.pe.service.comm.udp.UDPTransport" >
+		<param name="host">${monitor.udpTransport.address}</param>
+		<param name="port">${monitor.udpTransport.port}</param>
+	</transport>
+	 	  
+    <!-- monitor -->
+	
+
+</config>

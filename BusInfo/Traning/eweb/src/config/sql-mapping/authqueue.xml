@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="authqueue">
+	
+
+	<insert id="insertrecord" parameterClass="java.util.HashMap">
+	   insert into AUTHQUEUE
+	   (SEQNO ,
+        DATETIME  ,
+        TRSSTATUS ,
+        TRANSNAME ,
+        CIFNO     ,
+        USERID    ,
+        ACNO      ,
+        ACNO2     ,
+        AMOUNT  ,  
+        DATA )
+	   values(
+	    #_JnlNo#, 
+	    #_TransactionTimestamp#,
+	    #_TrsStatus#,
+	    #_TransName#,
+	    #_CifNo#,	    
+	    #_UserId#,
+	    #AcNo#,
+	    #AcNo2#,	
+	    #Amount#,	        
+	    #_JnlData#)
+	    
+	</insert>
+	
+	
+	
+	<!-- 当退回交易再次提交时，调用本sql -->
+	
+	<update  id="updatereentryrecord" parameterClass="java.util.HashMap">
+	   update AUTHQUEUE 
+	   
+	   set TRSSTATUS='97'
+	   
+       where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo# and USERID = #_UserId# 
+        and TRSSTATUS= '98'
+        
+	</update>
+	
+
+	<delete  id="deleterecord" parameterClass="java.util.HashMap">
+	   delete from AUTHQUEUE 
+       where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#
+	</delete>
+
+	
+	<update  id="submitrecord" parameterClass="java.util.HashMap">
+	   update AUTHQUEUE 
+	   
+	   set TRSSTATUS='00'
+	   
+       where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#
+	</update>
+	
+
+	<update  id="rejectrecord" parameterClass="java.util.HashMap">
+	   update AUTHQUEUE 
+	   
+	   set TRSSTATUS='99'
+	   
+       where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#
+	</update>
+
+	<update  id="reentryrecord" parameterClass="java.util.HashMap">
+	   update AUTHQUEUE 
+	   
+	   set TRSSTATUS='98'
+	   
+       where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#
+	</update>
+	
+	
+
+	<resultMap class="java.util.HashMap" id="querylistResult">
+		<result property="_AuthJnlNo" column="SEQNO" />
+		<result property="DateTime" column="DATETIME"  javaType="java.sql.Timestamp" />	
+		<result property="TrsStatus" column="TRSSTATUS" />
+        <result property="_TransName" column="TRANSNAME"/>   		
+        <result property="CifNo" column="CIFNO"/>   
+        <result property="UserId" column="USERID"/>              													
+        <result property="AcNo" column="ACNO"/> 
+        <result property="AcNo2" column="ACNO2"/>                               
+        <result property="txAmount" column="AMOUNT"/>                               
+
+
+
+	</resultMap>
+	
+	
+	<select id="querylist" parameterClass="java.util.HashMap" resultMap="querylistResult">
+	select  
+        SEQNO     ,
+        DATETIME  ,
+        TRSSTATUS ,
+        TRANSNAME ,
+        CIFNO     ,
+        USERID    ,
+        ACNO      ,
+        ACNO2  ,
+        AMOUNT   
+
+
+    from AUTHQUEUE where  CIFNO = #_CifNo# and USERID != #_UserId#  
+         and TRSSTATUS= '01'
+    
+    </select>
+    
+    <select id="queryReentrylist" parameterClass="java.util.HashMap" resultMap="querylistResult">
+	select  
+        SEQNO     ,
+        DATETIME  ,
+        TRSSTATUS ,
+        TRANSNAME ,
+        CIFNO     ,
+        USERID    ,
+        ACNO      ,
+        ACNO2  ,
+        AMOUNT   
+
+
+    from AUTHQUEUE where  CIFNO = #_CifNo# and USERID = #_UserId#  
+         and TRSSTATUS= '98'
+    
+    </select>
+	
+
+	<resultMap class="java.util.HashMap" id="querydetailResult">
+		<result property="_AuthJnlNo" column="SEQNO" />
+		<result property="DateTime" column="DATETIME" />	
+		<result property="TrsStatus" column="TRSSTATUS" />
+        <result property="_TransName" column="TRANSNAME"/>   		
+        <result property="CifNo" column="CIFNO"/>   
+        <result property="UserId" column="USERID"/>              													
+        <result property="AcNo" column="ACNO"/> 
+        <result property="AcNo2" column="ACNO2"/>                               
+		<result property="Amount" column="AMOUNT" />	
+		<result property="_JnlData" column="DATA" />			
+
+
+
+	</resultMap>
+	
+	
+	<select id="querydetail" parameterClass="java.util.HashMap" resultMap="querydetailResult">
+	select  
+        SEQNO     ,
+        DATETIME  ,
+        TRSSTATUS ,
+        TRANSNAME ,
+        CIFNO     ,
+        USERID    ,
+        ACNO      ,
+        ACNO2     ,
+        AMOUNT   ,
+        DATA 
+
+    from AUTHQUEUE
+
+    where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#  and TRSSTATUS= '01'
+    
+    </select>
+    
+	<resultMap class="java.util.HashMap" id="queryreentrydetailResult">
+		<result property="_AuthJnlNo" column="SEQNO" />
+        <result property="_TransName" column="TRANSNAME"/>   		
+		<result property="_JnlData" column="DATA" />			
+
+	</resultMap>    
+
+	<select id="queryreentrydetail" parameterClass="java.util.HashMap" resultMap="queryreentrydetailResult">
+	select  
+        SEQNO     ,
+        DATETIME  ,
+        TRSSTATUS ,
+        TRANSNAME ,
+        CIFNO     ,
+        USERID    ,
+        ACNO      ,
+        ACNO2     ,
+        AMOUNT   ,
+        DATA 
+
+    from AUTHQUEUE
+
+    where SEQNO=#_AuthJnlNo# and CIFNO = #_CifNo#  and TRSSTATUS= '98'
+    
+    </select>
+
+
+
+</sqlMap>

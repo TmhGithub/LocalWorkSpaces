@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common">
+
+	<!--insert communication server transaction log -->
+	<insert id="insertTrsLog" parameterClass="java.util.HashMap">
+	
+     insert into CSJNL 
+	               (
+					TRSDATE,
+					JNLNO, 
+					STATUS,
+					BEGINTIME,
+					TRANSNAME,
+					IPADDR
+		            )
+	   values(
+		#_TransactionSqlDate#,
+	    #_JnlNo#, 
+	    #_JnlStatus#,	    
+		#_TransactionTimestamp#,
+	    #_TransName#,
+	    #_IpAddr#
+		
+		)
+	    
+	</insert>
+
+
+	<update id="updateTrsLog" parameterClass="java.util.HashMap">
+	   update CSJNL set
+       STATUS =  #_JnlStatus#  ,    
+       <isNotEmpty  property="_RejCode">REJCODE = #_RejCode#  ,</isNotEmpty>
+	   <isNotEmpty  property="_RejMessage">REJMSG = #_RejMessage#, </isNotEmpty>
+       JNLDATA = #_JnlData#,
+       ENDTIME = #_EndTime#
+       
+       where JNLNO=#_JnlNo# and TRSDATE=#_TransactionSqlDate#
+	</update>
+
+
+
+
+
+</sqlMap>

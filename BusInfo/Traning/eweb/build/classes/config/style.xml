@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<!-- in csii validation, mainly use style for single object validation. 
+		for validation between objects, use rule.
+		
+		style is composed by some attributes. 
+	-->
+
+    <style id="FileStyle" class="com.csii.pe.validation.style.FileStyleImpl">
+	</style>
+
+	<!--Cif No-->
+	<style id="cifNoStyle">
+	  <setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{8}$</param>
+		</setting>
+	</style>
+
+
+	<!--User Id-->
+	<style id="userIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9a-zA-Z]{3,10}$</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.userId</param>
+		</messages>
+	</style>
+
+	<!--Password: must be digital and character-->
+	<style id="passwordStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{8,12}$</param>
+			<!--<param name="length">8</param>-->
+		</setting>
+	</style>
+
+
+	<!-- Branch Id.-->
+	<style id="branchIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[0-9]{4}$</param>
+		</setting>
+	</style>
+
+	<style id="AccountNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,30}</param>
+			<param name="acPermission">0|1</param>
+		</setting>
+	</style>
+
+
+	<style id="AcQueryPermissionStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,30}</param>
+			<param name="acPermission">0|1</param>
+		</setting>
+	</style>
+	<style id="SecuritiesAcPermissionStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,30}</param>
+			<param name="acPermission">0|1</param>
+		<!--  	<param name="acType">7</param>-->
+		</setting>
+	</style>
+
+
+	<style id="AcTransferPermissionStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,30}</param>
+			<param name="acPermission">1</param>
+		</setting>
+	</style>
+
+
+	<!--TxType S/B -->
+	<style id="TxTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[SB]{1}</param>
+		</setting>
+	</style>
+
+	<!--Y/N -->
+	<style id="YNStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^Y|N$</param>
+		</setting>
+	</style>
+
+
+	<!-- Styles   -->
+
+	<!--Role Id-->
+	<style id="roleIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{4}</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.roleId</param>
+		</messages>
+	</style>
+	<!-- SourceId -->
+	<style id="SourceIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{4}</param>
+		</setting>
+	</style>	
+	<style id="userIdSeqNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{4}</param>
+		</setting>
+		<messages>
+			<param name="pattern">validation.userId</param>
+		</messages>
+	</style>
+	
+	<!--Journal No.-->
+	<style id="jnlNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,20}</param>
+		</setting>
+	</style>
+	<!--User Role-->
+	<style id="userRoleStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[1-2]{4}</param>
+		</setting>
+	</style>
+	
+	<!--UserStatus 0：invalid；1：valid 2: Locked -->
+	<style id="userStatusStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-2]{1}</param>
+		</setting>
+	</style>
+
+	<!--ResetPassword 0－Reset；1－None-->
+	<style id="resetPasswordStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-1]{1}</param>
+		</setting>
+	</style>
+
+	
+	<!-- User Level 0：Headquarter；1：Branch-->
+	<style id="userLevelStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-1]{1}</param>
+		</setting>
+	</style>
+	<style id="sourceTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-1]{1}</param>
+		</setting>
+	</style>	
+	<style id="sourceStatusStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-2]{1}</param>
+		</setting>
+	</style>	
+	<style id="roundModeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-2]{1}</param>
+		</setting>
+	</style>
+	<!-- User Name-->
+	<style id="userNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]{0,10}</param>
+		</setting>
+	</style>
+
+	<!--Id. Type -->
+	<style id="identityTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-1]{1}</param>
+		</setting>
+	</style>
+	<!-- ip-->
+	<style id="IPStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1,3}[\.]{1}[0-9]{1,3}[\.]{1}[0-9]{1,3}[\.]{1}[0-9]{1,3}</param>
+		</setting>
+	</style>
+	<!--Date-->
+	<style id="dateStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="type">date</param>
+		</setting>
+	</style>
+	<style id="dateStringStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{8}</param>
+		</setting>
+	</style>
+	<!--email-->
+	<style id="emailStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[\w-]{2,4}$</param>
+			<param name="length">5,36</param>
+		</setting>
+	</style>
+	<!-- Counter-->
+	<style id="CounterStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]*</param>
+			<param name="length">1</param>
+			<param name="range">1,9</param>
+		</setting>
+	</style>
+
+	<style id="BatchCounterStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1,5}</param>
+		</setting>
+	</style>
+
+	<style id="digitStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{4}</param>
+		</setting>
+	</style>
+
+	<!-- Id. No.-->
+	<style id="certificateNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]*</param>
+			<param name="length">1,30</param>
+		</setting>
+	</style>
+
+	<!-- Telephone Number -->
+	<style id="phoneStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">(^[0-9]+)([0-9-]*)([0-9]+$)</param>
+			<param name="length">3,20</param>
+		</setting>
+	</style>
+	<!--Fax -->
+	<style id="faxStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">(^[0-9]+)([0-9-]*)([0-9]+$)</param>
+			<param name="length">3,20</param>
+		</setting>
+	</style>
+	
+	<!-- Gender -->
+	<style id="sexTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[M|F]{1}</param>
+		</setting>
+	</style>
+
+	<!-- Post Code-->
+	<style id="postCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{6}</param>
+		</setting>
+	</style>
+
+	
+	
+	<!--Name style : Any character -->
+	<style id="chNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]{0,100}</param>
+		</setting>
+	</style>
+	<!-- Chinese Address-->
+	<!--<style id="chAddressStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]{0,100}</param>
+		</setting>
+	</style>
+	-->
+	<style id="chNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[\u4E00-\u9FA5]{0,50}</param>
+		</setting>
+	</style>
+	<style id="chAddressStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[\u4E00-\u9FA5]{0,50}</param>
+		</setting>
+	</style>	
+	<style id="commNameStyle">
+		<setting>
+			<param name="option">false</param>
+			<!--<param name="pattern">(^[\w.\s\w]{0,100}$)</param>-->
+			<param name="pattern">[^.$]{1,18}</param>
+		</setting>
+	</style>
+	<style id="commAddressStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]{1,18}</param>
+		</setting>
+	</style>
+	<style id="commStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]+</param>
+		</setting>
+	</style>	
+    <!-- Amount -->
+	<style id="amountStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^(\d*|\d{1,3}(,\d{3})*)(\.\d{1,2})?$</param>
+			<param name="type">decimal</param>
+			<param name="length">1,18</param>
+		</setting>
+	</style>
+	
+	<style id="quotePointStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^(\d*|\d{1,3}(,\d{3})*)(\.\d{1,4})?$</param>
+			<param name="type">decimal</param>
+			<param name="length">1,13</param>
+		</setting>
+	</style>
+
+
+	<style id="rateStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">^(\d*|\d{1,3}(,\d{3})*)(\.\d{1,4})?$</param>
+			<param name="type">decimal</param>
+			<param name="length">1,9</param>
+		</setting>
+	</style>	
+	<style id="commStyleAllow">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[^.$]*</param>
+		</setting>
+	</style>
+	<style id="integerStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[1-9]{1}[0-9]{1,7}</param>
+		</setting>
+	</style>
+
+	<!-- -->
+	<style id="transactSeqnoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[\w]{1,20}</param>
+		</setting>
+	</style>
+	<style id="dateTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[\w]{1,20}</param>
+		</setting>
+	</style>
+	<style id="currenyCodeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{3}</param>
+		</setting>
+	</style>
+	<style id="jnlStatusStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{2}</param>
+		</setting>
+	</style>
+	<style id="channelSubmitStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[A-Z]{2}</param>
+		</setting>
+	</style>
+	<style id="methodStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1}</param>
+		</setting>
+	</style>
+	<style id="fxRefNoStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{4}</param>
+		</setting>
+	</style>
+	<!--24小时制的正点时间判断-->
+	<style id="hourDigitStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">(([0-1]{1}[0-9]{1})|([2]{1}[0-3]{1}))</param>
+		</setting>
+	</style>
+	
+	<!--Product Id-->
+	<style id="productIdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[A-Z]{6}</param>
+		</setting>
+	</style>
+	<!--Product Type-->
+	<style id="poductTypeStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[A-Z]{2}</param>
+		</setting>
+	</style>	
+
+	<!--Product Status 0：invalue；1: valid-->
+	<style id="productStatusStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-1]{1}</param>
+		</setting>
+	</style>
+	<!--Product Digit-->
+	<style id="timeThresholdStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1,4}</param>
+		</setting>
+	</style>
+	<!--MFX No.-->
+	<style id="MFXStyle">
+		<setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,12}</param>
+		</setting>
+	</style>	
+	
+	<style id="certNoStyle">
+	  <setting>
+			<param name="option">false</param>
+			<param name="pattern">[a-zA-Z0-9]{1,50}</param>
+		</setting>
+	</style>
+
+	<style id="stockCodeStyle">
+	  <setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1,5}</param>
+		</setting>
+	</style>
+
+	<style id="stockQuantityStyle">
+	  <setting>
+			<param name="option">false</param>
+			<param name="pattern">[0-9]{1,8}</param>
+		</setting>
+	</style>
+
+	<style id="stockPriceIntegerStyle">
+	  <setting>
+			<param name="option">true</param>
+			<param name="pattern">[0-9]{0,5}</param>
+		</setting>
+	</style>
+
+	<style id="stockPriceDecimalStyle">
+	  <setting>
+			<param name="option">true</param>
+			<param name="pattern">[0-9]{0,4}</param>
+		</setting>
+	</style>
+
+ 	<style id="alphaStyle">
+		<setting>
+			<param name="option">false</param>		
+			<param name="pattern">[a-zA-Z]*</param>
+		</setting>	
+	</style>		
+ 	<style id="digitAlphaStyle">
+		<setting>
+			<param name="option">false</param>		
+			<param name="pattern">[0-9a-zA-Z]*</param>
+		</setting>	
+	</style>
+</config>

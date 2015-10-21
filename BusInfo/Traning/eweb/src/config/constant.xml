@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+
+<config>
+	<sharedMap id="constantsMap">
+		<map name="sourceMap">
+		    <!-- 操作员状态 -->
+
+		    <list name="UserStatus" >
+		      <param >0</param>
+		      <param >1</param>	
+		      <param >2</param>		      		      	      
+		    </list>	
+
+			<!--全數成交與否-->
+		    <list name="OptionYN" >
+		      <param >N</param>
+		      <param >Y</param>		      		      	      
+		    </list>	
+		    
+			<!--股票買賣-->
+		    <list name="TxType" >
+		      <param >B</param>
+		      <param >S</param>		      		      	      
+		    </list>	
+		   <list name="Currency" >
+		      <param >CNY</param>
+		      <param >USD</param>		      
+		      <param >JPY</param>
+              <param >HKD</param>
+		    </list> 
+		</map>
+	</sharedMap>
+</config>	
+

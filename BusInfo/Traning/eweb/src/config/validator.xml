@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+<!-- Validator -->
+	<validator id="optionValidator" class="com.csii.pe.validation.style.support.Required">
+		<param name="messageKey">validation.required</param>
+	</validator>
+	<validator id="rangeValidator" class="com.csii.pe.validation.style.support.Range">
+		<param name="messageKey">validation.range</param>
+		<ref name="converters">converterClassRegistry</ref>
+	</validator>
+
+
+	<validator id="lengthValidator" class="com.csii.pe.validation.style.support.Length">
+		<param name="messageKey">validation.length</param>
+	</validator>
+	
+	<validator id="patternValidator" class="com.csii.pe.validation.style.support.RegexPattern">
+		<param name="messageKey">validation.pattern</param>
+	</validator>
+					
+	<validator id="typeValidator" class="com.csii.pe.validation.style.support.TypeConvert">
+		<ref name="converters">converterAliasRegistry</ref>
+		<param name="messageKey">validation.type</param>
+	</validator>
+	
+	<validator id="acPermissionValidator" class="com.csii.ibs.validator.ExAccountValidator">
+		<param name="messageKey">validation.acpermission</param>
+	</validator>
+	
+	
+
+	<!-- Converter   -->
+	<sharedMap id="converterAliasRegistry">
+		<map name="sourceMap">
+			<ref name="decimal">decimalConverter</ref>
+			<ref name="integer">integerConverter</ref>
+			<ref name="date">dateConverter</ref>
+			<ref name="time">timeConverter</ref>
+			<ref name="timestamp">timestampConverter</ref>
+			
+			<ref name="boolean">booleanConverter</ref>
+			<ref name="byte">byteConverter</ref>
+			<ref name="char">charConverter</ref>
+			<ref name="double">doubleConverter</ref>
+			<ref name="float">floatConverter</ref>
+			<ref name="int">intConverter</ref>
+			<ref name="long">longConverter</ref>
+			<ref name="short">shortConverter</ref>
+			<ref name="string">stringConverter</ref>
+			
+			<ref name="boolean[]">booleanArrayConverter</ref>
+			<ref name="byte[]">byteArrayConverter</ref>
+			<ref name="char[]">charArrayConverter</ref>
+			<ref name="double[]">doubleArrayConverter</ref>
+			<ref name="float[]">floatArrayConverter</ref>
+			<ref name="int[]">intArrayConverter</ref>
+			<ref name="long[]">longArrayConverter</ref>
+			<ref name="short[]">shortArrayConverter</ref>
+			<ref name="string[]">stringArrayConverter</ref>
+		</map>
+	</sharedMap>
+
+	<bean id="converterClassRegistry" class="com.csii.pe.validation.convert.ConverterRegister">
+		<list name="converters">
+			<ref>decimalConverter</ref>
+			<ref>integerConverter</ref>
+			<ref>dateConverter</ref>
+			<ref>timeConverter</ref>
+			<ref>timestampConverter</ref>
+			
+			<ref>booleanConverter</ref>
+			<ref>byteConverter</ref>
+			<ref>charConverter</ref>
+			<ref>doubleConverter</ref>
+			<ref>floatConverter</ref>
+			<ref>intConverter</ref>
+			<ref>longConverter</ref>
+			<ref>shortConverter</ref>
+			<ref>stringConverter</ref>
+			
+			<ref>booleanArrayConverter</ref>
+			<ref>byteArrayConverter</ref>
+			<ref>charArrayConverter</ref>
+			<ref>doubleArrayConverter</ref>
+			<ref>floatArrayConverter</ref>
+			<ref>intArrayConverter</ref>
+			<ref>longArrayConverter</ref>
+			<ref>shortArrayConverter</ref>
+			<ref>stringArrayConverter</ref>
+		</list>
+	</bean>
+
+   <converter id="decimalConverter" class="com.csii.pe.validation.convert.impl.BigDecimalConverter">
+		<param name="format">#,###.##</param>
+	</converter>
+	<converter id="integerConverter" class="com.csii.pe.validation.convert.impl.BigIntegerConverter">
+		<param name="format">#,###</param>
+	</converter>
+
+  <converter id="dateConverter" class="com.csii.pe.validation.convert.impl.SqlDateConverter">
+		<param name="format">yyyy-MM-dd</param>
+	</converter>	
+  <converter id="timeConverter" class="com.csii.pe.validation.convert.impl.SqlTimeConverter">
+		<param name="format">HH:mm:ss</param>
+	</converter>
+	<converter id="timestampConverter" class="com.csii.pe.validation.convert.impl.SqlTimestampConverter">
+		<param name="format">yyyy-MM-dd HH:mm:ss</param>
+	</converter>	
+	
+	<converter id="booleanConverter" class="com.csii.pe.validation.convert.impl.BooleanConverter">
+	</converter>
+	<converter id="byteConverter" class="com.csii.pe.validation.convert.impl.ByteConverter">
+	</converter>
+	<converter id="charConverter" class="com.csii.pe.validation.convert.impl.CharacterConverter">
+	</converter>
+	<converter id="doubleConverter" class="com.csii.pe.validation.convert.impl.DoubleConverter">
+	</converter>
+	<converter id="floatConverter" class="com.csii.pe.validation.convert.impl.FloatConverter">
+	</converter>
+	<converter id="intConverter" class="com.csii.pe.validation.convert.impl.IntegerConverter">
+	</converter>
+	<converter id="longConverter" class="com.csii.pe.validation.convert.impl.LongConverter">
+	</converter>
+	<converter id="shortConverter" class="com.csii.pe.validation.convert.impl.ShortConverter">
+	</converter>
+	<converter id="stringConverter" class="com.csii.pe.validation.convert.impl.StringConverter">
+	</converter>
+
+	<converter id="booleanArrayConverter" class="com.csii.pe.validation.convert.impl.BooleanArrayConverter">
+	</converter>
+	<converter id="byteArrayConverter" class="com.csii.pe.validation.convert.impl.ByteArrayConverter">
+	</converter>
+	<converter id="charArrayConverter" class="com.csii.pe.validation.convert.impl.CharacterArrayConverter">
+	</converter>
+	<converter id="doubleArrayConverter" class="com.csii.pe.validation.convert.impl.DoubleArrayConverter">
+	</converter>
+	<converter id="floatArrayConverter" class="com.csii.pe.validation.convert.impl.FloatArrayConverter">
+	</converter>
+	<converter id="intArrayConverter" class="com.csii.pe.validation.convert.impl.IntegerArrayConverter">
+	</converter>
+	<converter id="longArrayConverter" class="com.csii.pe.validation.convert.impl.LongArrayConverter">
+	</converter>
+	<converter id="shortArrayConverter" class="com.csii.pe.validation.convert.impl.ShortArrayConverter">
+	</converter>
+	<converter id="stringArrayConverter" class="com.csii.pe.validation.convert.impl.StringArrayConverter">
+	</converter>
+</config>

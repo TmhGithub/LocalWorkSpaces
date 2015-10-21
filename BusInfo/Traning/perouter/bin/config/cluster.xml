@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+
+	
+    <!-- event definition for server heart beat  -->
+
+	
+	<transformerFactory id="eventTransformerFactory" class="com.csii.pe.transform.TransformerFactory">
+	   <param name="path">/extern/</param>
+	</transformerFactory>
+		
+	
+	<server id="clusterEventDispatcher" class="com.csii.pe.service.event.EventDispatcherImpl" >
+		<param name="name">clusterEventDispatcher</param>
+	    <ref name="executor">clusterEventThreadPool</ref> 
+	</server>
+	
+	<executor id="clusterEventThreadPool">
+		<param name="name">Event-ThreadPool</param>
+		<param name="initSize">1</param>
+		<param name="maxSize">2</param>
+		<param name="minSize">1</param>
+    	<param name="queueSize">500</param>    
+		<param name="keepAliveTime">300</param>
+	</executor>
+	
+	
+	<bean id="clusterRemoteEventAgent" class="com.csii.pe.service.event.support.RemoteEventAgent" >
+	    <param name="id">CPSS,EAI</param>
+		<ref name="eventDispatcher">clusterEventDispatcher</ref>	
+	   <ref name="transport">clusterUdpTransport</ref>
+   	   <ref name="transformerFactory">eventTransformerFactory</ref>
+  	   <param name="format">externAlias</param>   	   
+	</bean>
+	
+	<transport id="clusterUdpTransport" class="com.csii.pe.service.comm.udp.UDPTransport" >
+		<param name="host">${event.udpTransport.address}</param>
+		<param name="port">${event.udpTransport.port}</param>
+
+	</transport>
+
+    <!-- end of server heart beat -->
+  
+
+</config>	
+

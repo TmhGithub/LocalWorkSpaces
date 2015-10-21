@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE config PUBLIC "-//PE//DTD BEAN//EN" "http://www.csii.com.cn/dtd/pe-config.dtd">
+
+<config>
+
+	<!-- Templates  -->
+
+	<template id="emptytemplate" class="com.csii.pe.template.EmptyTemplate" chain="defaultChain"/>
+	
+	<template id="defaultTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="defaultChain"/>
+	
+	<template id="pageLoaderTemplate" class="com.csii.pe.template.PageLoaderSequenceTemplate" chain="chainForRoleControl">
+		<actions>
+			<ref name="act01">Placeholder</ref>
+		</actions>
+	</template>
+	
+	<template id="emptyPageLoadertemplate" class="com.csii.pe.template.EmptyTemplate" chain="chainForRoleControl"></template>		
+
+	<template id="sequenceTemplateforLoginControl" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForLoginControl">
+		<actions>
+			<ref name="act01">Placeholder</ref>
+		</actions>
+	</template>	
+	
+	<template id="DynamicTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForRoleControl">
+	</template>	
+	
+	<template id="queryTemplate" class="com.csii.pe.template.ExecutableSequenceTemplate" chain="chainForRoleControl">
+		<actions>
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>	
+
+    <template id="twoPhaseTrsTemplate" class="com.csii.ibs.workflow.TwoPhaseTrsTemplate" chain="chainForRoleControl2">	 
+		<actions>
+		
+			<ref name="preAction">preSubmitJournal</ref>
+			<ref name="aftAction">aftSubmitJournal</ref> 
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>
+
+    <template id="trsConfirmTemplate" class="com.csii.ibs.workflow.TrsConfirmTemplate" chain="chainForRoleControl">	 
+		<actions>		
+			<ref name="action">Placeholder</ref>
+		</actions>
+	</template>	
+	
+    <template id="trsRelayTemplate" class="com.csii.ibs.workflow.TrsRelayTemplate" chain="chainForRoleControl">	
+       <ref name="transport">relayTransport</ref>
+       <actions>
+	   </actions>     
+	</template>	 
+
+	
+   <template id="entryTrsWorkflow" class="com.csii.ibs.workflow.EntryRecoverableTrsWorkflow" chain="chainForRoleControl2"> 
+		<ref name="authModel">authModel</ref>
+		<actions>		
+			<ref name="preAction">preSubmitJournal</ref>
+			<ref name="aftAction">aftSubmitJournal</ref> 
+			<ref name="action">Placeholder</ref>
+			<ref name="writeAuthQueueAction">WriteAuthQueueAction</ref>
+			<ref name="updateReentryAction">UpdateReentryAction</ref>
+		</actions>
+	</template>	  
+	
+	<bean id="authModel" class="com.csii.ibs.authmodel.verify.VerifyAuthModel">
+	</bean>
+		
+	<action id="WriteAuthQueueAction" class="com.csii.ibs.workflow.queue.SaveTrs2QueueAction" >
+	</action>	
+
+	<action id="UpdateReentryAction" class="com.csii.ibs.workflow.queue.UpdateReentryAction" >
+	  <param name="deleteFlag">false</param>
+	  <list name="conditionList">
+	  	  <param >_AuthJnlNo</param>
+	  </list>
+	</action>
+	
+    <template id="authTrsWorkflow" class="com.csii.ibs.workflow.AuthRecoverableTrsWorkflow" chain="chainForRoleControl"> 
+		<ref name="authModel">authModel</ref>		
+		<list name="mapping">
+			<param>_TrsStatus</param>
+		</list>
+		<actions>
+			<ref name="preAction">preSubmitJournal</ref>
+			<ref name="aftAction">aftSubmitJournal</ref>		
+			<ref name="updateAuthQueueAction">UpdateAuthQueueAction</ref>			
+			<ref name="readAuthQueueAction">ReadAuthQueueAction</ref>
+			<ref name="submitAction">SubmitAction</ref>			
+			<ref name="rejectAction">RejectAction</ref>						
+			<ref name="reentryAction">ReentryAction</ref>											
+		</actions>
+	</template>	 	
+	
+	<action id="UpdateAuthQueueAction" class="com.csii.ibs.workflow.queue.UpdateTrs2QueueAction" >
+	</action>	
+	
+	<action id="ReadAuthQueueAction" class="com.csii.ibs.workflow.queue.RestoreTrsFromQueueAction" >
+   	</action>	
+	   
+	<action id="SubmitAction" class="com.csii.ibs.workflow.queue.SubmitAction" >
+	</action>	
+
+	<action id="RejectAction" class="com.csii.ibs.workflow.queue.RejectAction" >
+	</action>	
+
+	<action id="ReentryAction" class="com.csii.ibs.workflow.queue.ReentryAction" >
+	</action>	
+   	
+   	
+	
+	
+		 
+	
+</config>
