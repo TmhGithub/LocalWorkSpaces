@@ -1,0 +1,22 @@
+<!DOCTYPE dwr PUBLIC
+"-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+"http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+   <allow>
+      <create creator="new"  javascript="userService">
+           <param name="class" value="com.cissst.service.UserService">
+           </param>
+      </create>
+      
+       <create creator="new"  javascript="areaService">
+           <param name="class" value="com.cissst.service.AreaService">
+           </param>
+      </create>
+      
+      
+      <convert converter="bean" match="com.cissst.vo.*"></convert>
+      <convert converter="bean" match="com.cissst.service.User"></convert>
+
+   </allow>
+</dwr>

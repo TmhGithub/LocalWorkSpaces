@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="DwrForajax"
+  id="myeclipse.1346672650681"
+  context-root="/DwrForajax"
+  j2ee-spec="5.0"
+  archive="DwrForajax.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
