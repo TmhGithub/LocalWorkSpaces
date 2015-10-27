@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbStudentGrade" table="tb_student_grade">
+        <id name="stuGraId" type="java.lang.Integer">
+            <column name="stu_gra_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbStateflag" class="com.cissst.entity.TbStateflag" fetch="select" lazy="false">
+            <column name="sta_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbStudent" class="com.cissst.entity.TbStudent" fetch="select" lazy="false">
+            <column name="stu_id" />
+        </many-to-one>
+        <many-to-one name="tbPlan" class="com.cissst.entity.TbPlan" fetch="select" lazy="false">
+            <column name="plan_tb_id" />
+        </many-to-one>
+        <property name="examGrade" type="java.lang.String">
+            <column name="exam_grade" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+    </class>
+</hibernate-mapping>

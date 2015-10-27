@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbDel" table="tb_del">
+        <id name="delTbId" type="java.lang.Integer">
+            <column name="del_tb_id" />
+            <generator class="native" />
+        </id>
+        <property name="delId" type="java.lang.String">
+            <column name="del_id" />
+        </property>
+        <property name="delFlag" type="java.lang.String">
+            <column name="del_flag" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbStudentTypes" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudentType" />
+        </set>
+        <set name="tbUsers" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbUser" />
+        </set>
+        <set name="tbStudents" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudent" />
+        </set>
+        <set name="tbThemeKeies" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeKey" />
+        </set>
+        <set name="tbPolicyThemeses" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPolicyThemes" />
+        </set>
+        <set name="tbPlanPutouts" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlanPutout" />
+        </set>
+        <set name="tbClasses" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbClass" />
+        </set>
+        <set name="tbClassTypes" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbClassType" />
+        </set>
+        <set name="tbThemes" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTheme" />
+        </set>
+        <set name="tbPlanRemoves" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlanRemove" />
+        </set>
+        <set name="tbPrecepts" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPrecept" />
+        </set>
+        <set name="tbPreceptPolicies" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptPolicy" />
+        </set>
+        <set name="tbExamCommits" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamCommit" />
+        </set>
+        <set name="tbGradePutouts" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbGradePutout" />
+        </set>
+        <set name="tbStudentGrades" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudentGrade" />
+        </set>
+        <set name="tbStateflags" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStateflag" />
+        </set>
+        <set name="tbPreceptRemoves" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptRemove" />
+        </set>
+        <set name="tbPreceptAuditings" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptAuditing" />
+        </set>
+        <set name="tbThemeDifficulties" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeDifficulty" />
+        </set>
+        <set name="tbThemeTypes" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeType" />
+        </set>
+        <set name="tbThemeAreas" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeArea" />
+        </set>
+        <set name="tbThemeAuditings" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeAuditing" />
+        </set>
+        <set name="tbThemeRemoves" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeRemove" />
+        </set>
+        <set name="tbPlans" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlan" />
+        </set>
+        <set name="tbPolicies" inverse="true">
+            <key>
+                <column name="del_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPolicy" />
+        </set>
+    </class>
+</hibernate-mapping>

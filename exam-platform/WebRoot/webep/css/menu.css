@@ -1,0 +1,25 @@
+.clCMEvent{position:absolute; z-index:300; width:100%; height:100%; clip:rect(0,100%,100%,0); left:0; top:0; visibility:hidden}
+.clCMAbs{position:absolute; width:10; height:10; left:0; top:0; visibility:hidden}
+.clT,.clTover{
+	position:absolute;
+	overflow:hidden;
+	width:130;
+	height:28;
+	cursor:pointer;
+	cursor:hand;
+}
+.clS,.clSover,.clS2,.clS2over{position:absolute; overflow:hidden; width:130; height:26; cursor:pointer; cursor:hand;}
+.clT,.clTover{padding:4px; font-size:12px;
+	border-right: 1px solid #7d7d7d;
+		text-align: center;
+}
+.clT {color:black;}   
+.clTover{color:red;text-decoration: underline;background-color:#EEEEEE;}
+.clS,.clSover{padding:5px; font-size:12px;margin-left:1px;}
+.clS2,.clS2over{padding:5px; font-size:12px;margin-left:1px;}
+.clS,.clS2{color:#000000; background-color:#EEEEEE; layer-background-color:#EEEEEE;}
+.clSover,.clS2over{color:white;layer-background-color:#0A246A; background-color:#0A246A;}
+.clBS{position:absolute; visibility:hidden; z-index:300; layer-background-color:#FFFFFF; background-color:#FFFFFF;
+border: 1px solid #666666;padding-left:100px;
+}
+.clB{position:absolute; visibility:hidden; z-index:300}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbStateflag" table="tb_stateflag">
+        <id name="staId" type="java.lang.Integer">
+            <column name="sta_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <property name="stateId" type="java.lang.String">
+            <column name="state_id" />
+        </property>
+        <property name="stateFlag" type="java.lang.String">
+            <column name="state_flag" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbStudentGrades" inverse="true">
+            <key>
+                <column name="sta_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudentGrade" />
+        </set>
+        <set name="tbPlans" inverse="true">
+            <key>
+                <column name="sta_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlan" />
+        </set>
+        <set name="tbExamCommits" inverse="true">
+            <key>
+                <column name="sta_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamCommit" />
+        </set>
+        <set name="tbThemes" inverse="true">
+            <key>
+                <column name="sta_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTheme" />
+        </set>
+        <set name="tbPrecepts" inverse="true">
+            <key>
+                <column name="sta_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPrecept" />
+        </set>
+    </class>
+</hibernate-mapping>

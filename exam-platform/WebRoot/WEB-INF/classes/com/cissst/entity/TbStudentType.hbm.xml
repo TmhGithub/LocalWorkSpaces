@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbStudentType" table="tb_student_type" >
+        <id name="stuTypeId" type="java.lang.Integer">
+            <column name="stu_type_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <property name="stutypeId" type="java.lang.String">
+            <column name="stutype_id" />
+        </property>
+        <property name="stutypeName" type="java.lang.String">
+            <column name="stutype_name" />
+        </property>
+        <property name="clo1" type="java.lang.String">
+            <column name="clo1" />
+        </property>
+        <property name="clo2" type="java.lang.String">
+            <column name="clo2" />
+        </property>
+        <property name="clo3" type="java.lang.String">
+            <column name="clo3" />
+        </property>
+        <set name="tbStudents" inverse="true">
+            <key>
+                <column name="stu_type_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudent" />
+        </set>
+    </class>
+</hibernate-mapping>

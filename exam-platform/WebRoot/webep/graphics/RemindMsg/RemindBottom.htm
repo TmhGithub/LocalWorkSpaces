@@ -1,0 +1,73 @@
+<html>
+<SCRIPT LANGUAGE=javascript> 
+//	window.onload=getText;
+/*
+	function getText()
+	{
+
+		var scrLeft,cltWidth
+		var scrDistance,strLen,innerLen;
+		scrLeft=marQ.scrollLeft;
+		cltWidth=marQ.clientWidth;
+		scrDistance=scrLeft-cltWidth;
+		div1.innerHTML=""+document.frm1.txtField.value+"";
+		innerLen=div1.innerHTML.length;
+		if (innerLen*2<cltWidth)
+		{
+			if ((cltWidth-scrLeft)/8<innerLen)
+			{
+				div1.innerHTML=div1.innerHTML+div1.innerHTML
+			}
+		}
+		if (scrDistance>0)
+		{
+			strLen=scrDistance/2;
+			innerLen=div1.innerHTML.length;
+			if ((innerLen-strLen)*2<cltWidth)
+			{
+				var addNum;
+				addNum=parseInt((cltWidth-(innerLen-strLen)*2)/innerLen)
+				var i;
+				var innerStr;
+				innerStr=div1.innerHTML;
+				for(i=0;i<=addNum;i++)
+					div1.innerHTML=div1.innerHTML+"   "+innerStr
+			}
+		}
+
+//			window.setTimeout(getText,10000);
+	} 
+*/	
+    function switchMar(obj)
+	{
+		if(frm1.nSwitch.value==1)
+		{
+			obj.stop();
+			frm1.nSwitch.value=2;
+		}
+		else
+		{
+			frm1.nSwitch.value=1;
+			obj.start();
+		}
+	}
+</SCRIPT>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="../../css/style.css" type="text/css">
+</head>
+
+<BODY bgColor=#f3f3f3 leftmargin="0" topmargin="0">
+<form method="post" action="" name="frm1">
+  <input type="hidden" name="nSwitch" value="1">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f3f3f3" bordercolor="#f3f3f3" height="20">
+    <tr> 
+      <td height="20%"> 
+        <input type="hidden" name="textfield" id="txtField">
+<marquee   bgcolor="#f3f3f3" id="marQ" ondblclick="javascript:switchMar(this)"></marquee></td>
+    </tr>
+  </table>
+  </form>
+</body>
+</html>

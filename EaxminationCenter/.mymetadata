@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="EaxminationCenter"
+  id="myeclipse.1345028642743"
+  context-root="/EaxminationCenter"
+  j2ee-spec="5.0"
+  archive="EaxminationCenter.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

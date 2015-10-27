@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbThemeKey" table="tb_theme_key">
+        <id name="themeKeyId" type="java.lang.Integer">
+            <column name="theme_key_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false" cascade="save-update">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbTheme" class="com.cissst.entity.TbTheme" fetch="select" lazy="false" cascade="save-update">
+            <column name="theme_id" />
+        </many-to-one>
+        <property name="thekeyId" type="java.lang.String">
+            <column name="thekey_id" />
+        </property>
+        <property name="theAllkey" type="java.lang.String">
+            <column name="the_allkey" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+    </class>
+</hibernate-mapping>

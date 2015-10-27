@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbThemeRemove" table="tb_theme_remove" >
+        <id name="theRemId" type="java.lang.Integer">
+            <column name="the_rem_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbTheme" class="com.cissst.entity.TbTheme" fetch="select" lazy="false">
+            <column name="theme_id" />
+        </many-to-one>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+    </class>
+</hibernate-mapping>

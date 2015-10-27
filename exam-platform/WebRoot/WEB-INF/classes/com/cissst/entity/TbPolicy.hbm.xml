@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbPolicy" table="tb_policy">
+        <id name="policyId" type="java.lang.Integer">
+            <column name="policy_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbThemeType" class="com.cissst.entity.TbThemeType" fetch="select" lazy="false">
+            <column name="theme_type_id" />
+        </many-to-one>
+        <many-to-one name="tbThemeArea" class="com.cissst.entity.TbThemeArea" fetch="select" lazy="false">
+            <column name="theme_area_id" />
+        </many-to-one>
+        <many-to-one name="tbThemeDifficulty" class="com.cissst.entity.TbThemeDifficulty" fetch="select" lazy="false">
+            <column name="theme_dif_id" />
+        </many-to-one>
+        <property name="examMode" type="java.lang.String">
+            <column name="exam_mode" />
+        </property>
+        <property name="polId" type="java.lang.String">
+            <column name="pol_id" />
+        </property>
+        <property name="polOnescore" type="java.lang.String">
+            <column name="pol_onescore" />
+        </property>
+        <property name="polThemecount" type="java.lang.String">
+            <column name="pol_themecount" />
+        </property>
+        <property name="polReworkmode" type="java.lang.String">
+            <column name="pol_reworkmode" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbPreceptPolicies" inverse="true">
+            <key>
+                <column name="policy_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptPolicy" />
+        </set>
+        <set name="tbPolicyThemeses" inverse="true">
+            <key>
+                <column name="policy_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPolicyThemes" />
+        </set>
+    </class>
+</hibernate-mapping>

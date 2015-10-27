@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbPrecept" table="tb_precept">
+        <id name="preceptId" type="java.lang.Integer">
+            <column name="precept_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="tbStateflag" class="com.cissst.entity.TbStateflag" fetch="select" lazy="false">
+            <column name="sta_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <property name="preId" type="java.lang.String">
+            <column name="pre_id" />
+        </property>
+        <property name="preName" type="java.lang.String">
+            <column name="pre_name" />
+        </property>
+        <property name="preDesc" type="java.lang.String">
+            <column name="pre_desc" />
+        </property>
+        <property name="preIntime" type="java.lang.String">
+            <column name="pre_intime" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbPreceptPolicies" inverse="true">
+            <key>
+                <column name="precept_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptPolicy" />
+        </set>
+        <set name="tbPreceptAuditings" inverse="true">
+            <key>
+                <column name="precept_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptAuditing" />
+        </set>
+        <set name="tbPlans" inverse="true">
+            <key>
+                <column name="precept_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlan" />
+        </set>
+        <set name="tbPreceptRemoves" inverse="true">
+            <key>
+                <column name="precept_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptRemove" />
+        </set>
+    </class>
+</hibernate-mapping>

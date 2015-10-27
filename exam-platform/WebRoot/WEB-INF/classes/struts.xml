@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <constant name="struts.i18n.encoding" value="GBK"/>
+    <include file="struts_AchievementMangerAction.xml"/>
+	<include file="struts_ClassMangerAction.xml"/>
+	<include file="struts_ExampaperManagerAction.xml"/>
+	<include file="struts_ExamPlanMangerAction.xml"/>
+	<include file="struts_ExamSchemeMangerAction.xml"/>
+	<include file="struts_IndexMangerAction.xml"/>
+	<include file="struts_SysMangerAction.xml"/>
+</struts>    

@@ -1,0 +1,135 @@
+
+<script language="JavaScript">
+window.focus();
+</script>
+
+
+<script language="JavaScript">
+function keyDown(DnEvents) 
+{ 
+	k =  window.event.keyCode;
+	if (k == 27)
+	{  
+		try
+		{
+			parent.opener.document.all.examClass.focus();
+			self.close();	
+		}
+		catch(e)
+		{}
+	}
+}
+document.onkeydown = keyDown;
+</script>	
+
+<script language=javascript>
+//初始化
+function window.onload()
+{
+	try
+	{
+	    rdo1.focus();
+	    rdo1.checked = true;
+	}
+	catch(e)
+	{}
+}
+</script>
+
+<html>
+<head>
+<title>放大镜模板</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="../webep/css/style.css" type="text/css">
+
+<!--引用数据校验方法集-->
+</head>
+<body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginwidth="5" marginheight="5">
+<table width="100%" border="0" name="table" class="ItemList" cellspacing="1">
+
+    <tr bordercolor="#999999">
+      	<td width="3%" height="26" class="ItemTitle">&nbsp;</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班级编号</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班级名称</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班主任</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>开班日期</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>结业日期</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班级类型</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班级人数</b></div>
+		</td>
+		<td class="ItemTitle">
+			<div align="center"><b>班级状态</b></div>
+		</td>
+    </tr>
+
+    <tr bordercolor="#999999">
+	  <td class="ItemBody"><input type="radio" name="rdo" id="rdo1" onkeydown='if(event.keyCode==13) self.close();'></td>
+      	<td class="ItemBody"><A href="#" onClick='self.close();'><div align="center">记录1</div></A></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+    </tr>
+	<tr bordercolor="#999999">
+	  <td class="ItemBody"><input type="radio" name="rdo" id="rdo1" onkeydown='if(event.keyCode==13) self.close();'></td>
+      	<td class="ItemBody"><A href="#" onClick='self.close();'><div align="center">记录2</div></A></td>
+		<td class="ItemBody"><div align="center">记录2</div></td>
+		<td class="ItemBody"><div align="center">记录2</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+		<td class="ItemBody"><div align="center">记录1</div></td>
+    </tr>
+	
+	<TR align="middle" class="ItemBody">
+	<TD colSpan=9 height=1>
+            <TABLE border=0 cellPadding=0 cellSpacing=3 class=SearchBar 
+            height=20 width="135%">
+              <TR>
+                <TD height=20 width=1100>
+                    <DIV align=right> 
+                      <P><B>第 
+		              	
+                        <input type="text" name="QueryPageNo" size="3" value="1" class="SearchBar_Page">
+                           页 / 共 1 页 
+                        <input type="button" name="btnGo" value="go" class="SearchBar_Btn">
+							
+                        <input type="button" name="btnFirst" value="|&lt;" class="SearchBar_Btn" >
+
+                        <input type="button" name="btnPrevious" value="&lt;" class="SearchBar_Btn">
+
+                        <input type="button" name="btnNext" value="&gt;" class="SearchBar_Btn" >
+
+                        <input type="button" name="btnEnd" value="&gt;|" class="SearchBar_Btn" >
+
+                        <SPAN 
+          class=SearchBar></SPAN></B></P>
+                  </DIV></TD></TR></TABLE>
+				  </TD>
+											</TR>
+										</TABLE>
+									</TD>
+									</tr>
+</table>
+</body>
+</html>
+
+
+

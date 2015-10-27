@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbClass" table="tb_class">
+        <id name="classId" type="java.lang.Integer">
+            <column name="class_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbClassType" class="com.cissst.entity.TbClassType" fetch="select" lazy="false">
+            <column name="class_type_id" />
+        </many-to-one>
+        <property name="claId" type="java.lang.String">
+            <column name="cla_id" />
+        </property>
+        <property name="claName" type="java.lang.String">
+            <column name="cla_name" />
+        </property>
+        <property name="claDesc" type="java.lang.String">
+            <column name="cla_desc" />
+        </property>
+        <property name="claState" type="java.lang.String">
+            <column name="cla_state" />
+        </property>
+        <property name="claIndate" type="java.lang.String">
+            <column name="cla_indate" />
+        </property>
+        <property name="claOutdate" type="java.lang.String">
+            <column name="cla_outdate" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbStudents" inverse="true">
+            <key>
+                <column name="class_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudent" />
+        </set>
+        <set name="tbPlans" inverse="true">
+            <key>
+                <column name="class_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlan" />
+        </set>
+    </class>
+</hibernate-mapping>

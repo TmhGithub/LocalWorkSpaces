@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbThemeAuditing" table="tb_theme_auditing">
+        <id name="theAudId" type="java.lang.Integer">
+            <column name="the_aud_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbTheme" class="com.cissst.entity.TbTheme" fetch="select" lazy="false">
+            <column name="theme_id" />
+        </many-to-one>
+        <property name="audId" type="java.lang.String">
+            <column name="aud_id" />
+        </property>
+        <property name="audIdea" type="java.lang.String">
+            <column name="aud_idea" />
+        </property>
+        <property name="audResult" type="java.lang.String">
+            <column name="aud_result" />
+        </property>
+        <property name="autDate" type="java.lang.String">
+            <column name="aut_date" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+    </class>
+</hibernate-mapping>

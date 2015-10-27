@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+	<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+	<property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+	<property name="connection.username">exam</property>
+	<property name="connection.password">exam</property>
+	<property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+	<property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+	<property name="myeclipse.connection.profile">oracleexam</property>
+	<mapping resource="com/cissst/entity/TbUser.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPreceptAuditing.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeRemove.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbStudent.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbExamCommit.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPlanPutout.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeArea.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbStateflag.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbClass.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPlan.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbGradePutout.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPreceptRemove.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbClassType.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeDifficulty.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPreceptPolicy.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeAuditing.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbDel.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbStudentType.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeKey.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbStudentGrade.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPolicyThemes.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPlanRemove.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbTheme.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbThemeType.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPrecept.hbm.xml" />
+	<mapping resource="com/cissst/entity/TbPolicy.hbm.xml" />
+</session-factory>
+
+</hibernate-configuration>

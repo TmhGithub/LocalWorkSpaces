@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbPlan" table="tb_plan">
+        <id name="planTbId" type="java.lang.Integer">
+            <column name="plan_tb_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="user_id" />
+        </many-to-one>
+        <many-to-one name="tbStateflag" class="com.cissst.entity.TbStateflag" fetch="select" lazy="false">
+            <column name="sta_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbPrecept" class="com.cissst.entity.TbPrecept" fetch="select" lazy="false">
+            <column name="precept_id" />
+        </many-to-one>
+        <many-to-one name="tbClass" class="com.cissst.entity.TbClass" fetch="select" lazy="false">
+            <column name="class_id" />
+        </many-to-one>
+        <property name="planId" type="java.lang.String">
+            <column name="plan_id" />
+        </property>
+        <property name="planName" type="java.lang.String">
+            <column name="plan_name" />
+        </property>
+        <property name="planDesc" type="java.lang.String">
+            <column name="plan_desc" />
+        </property>
+        <property name="planStarttime" type="java.lang.String">
+            <column name="plan_starttime" />
+        </property>
+        <property name="planEndtime" type="java.lang.String">
+            <column name="plan_endtime" />
+        </property>
+        <property name="palnEnddate" type="java.lang.String">
+            <column name="paln_enddate" />
+        </property>
+        <property name="modType" type="java.lang.String">
+            <column name="mod_type" />
+        </property>
+        <property name="modState" type="java.lang.String">
+            <column name="mod_state" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbGradePutouts" inverse="true">
+            <key>
+                <column name="plan_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbGradePutout" />
+        </set>
+        <set name="tbPlanPutouts" inverse="true">
+            <key>
+                <column name="plan_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlanPutout" />
+        </set>
+        <set name="tbStudentGrades" inverse="true">
+            <key>
+                <column name="plan_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudentGrade" />
+        </set>
+        <set name="tbExamCommits" inverse="true">
+            <key>
+                <column name="plan_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamCommit" />
+        </set>
+        <set name="tbPlanRemoves" inverse="true">
+            <key>
+                <column name="plan_tb_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlanRemove" />
+        </set>
+    </class>
+</hibernate-mapping>

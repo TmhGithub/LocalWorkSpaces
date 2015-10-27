@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbStudent" table="tb_student" >
+        <id name="stuId" type="java.lang.Integer">
+            <column name="stu_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbStudentType" class="com.cissst.entity.TbStudentType" fetch="select" lazy="false">
+            <column name="stu_type_id" />
+        </many-to-one>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <many-to-one name="tbClass" class="com.cissst.entity.TbClass" fetch="select" lazy="false">
+            <column name="class_id" />
+        </many-to-one>
+        <property name="stuAccount" type="java.lang.String">
+            <column name="stu_account" />
+        </property>
+        <property name="stuPassword" type="java.lang.String">
+            <column name="stu_password" />
+        </property>
+        <property name="stuName" type="java.lang.String">
+            <column name="stu_name" />
+        </property>
+        <property name="stuSex" type="java.lang.String">
+            <column name="stu_sex" />
+        </property>
+        <property name="stuIndate" type="java.lang.String">
+            <column name="stu_indate" />
+        </property>
+        <property name="stuExamtime" type="java.lang.String">
+            <column name="stu_examtime" />
+        </property>
+        <property name="stuLasttime" type="java.lang.String">
+            <column name="stu_lasttime" />
+        </property>
+        <property name="stuState" type="java.lang.String">
+            <column name="stu_state" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbStudentGrades" inverse="true">
+            <key>
+                <column name="stu_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudentGrade" />
+        </set>
+        <set name="tbExamCommits" inverse="true">
+            <key>
+                <column name="stu_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamCommit" />
+        </set>
+    </class>
+</hibernate-mapping>

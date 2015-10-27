@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbUser" table="tb_user" >
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <property name="userAccount" type="java.lang.String">
+            <column name="user_account" />
+        </property>
+        <property name="userPassword" type="java.lang.String">
+            <column name="user_password" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" />
+        </property>
+        <property name="userEmail" type="java.lang.String">
+            <column name="user_Email" />
+        </property>
+        <property name="userSex" type="java.lang.String">
+            <column name="user_sex" />
+        </property>
+        <property name="userType" type="java.lang.String">
+            <column name="user_type" />
+        </property>
+        <property name="userIndate" type="java.lang.String">
+            <column name="user_indate" />
+        </property>
+        <property name="userLasttime" type="java.lang.String">
+            <column name="user_lasttime" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbPlans" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPlan" />
+        </set>
+        <set name="tbThemeAuditings" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbThemeAuditing" />
+        </set>
+        <set name="tbPreceptAuditings" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPreceptAuditing" />
+        </set>
+        <set name="tbThemes" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTheme" />
+        </set>
+        <set name="tbPrecepts" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPrecept" />
+        </set>
+        <set name="tbClasses" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbClass" />
+        </set>
+    </class>
+</hibernate-mapping>

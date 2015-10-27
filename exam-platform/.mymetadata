@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="exam-platform"
+  id="myeclipse.1303957347546"
+  context-root="/exam-platform"
+  j2ee-spec="5.0"
+  archive="exam-platform.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 引入init.properties中属性 -->
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:init.properties</value>
+		</property>
+	</bean>
+	<!-- 配置数据源，连接池使用c3p0,详细信息参见hibernate官方文档"基础配置章节"-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" dependency-check="none">
+		<!--链接数据库所需驱动-->
+		<property name="driverClass">
+			<value>${datasource.driverClassName}</value>
+		</property>
+		<!--链接数据库的url-->
+		<property name="jdbcUrl">
+			<value>${datasource.url}</value>
+		</property>
+		<!--链接数据库用户名-->
+		<property name="user">
+			<value>${datasource.username}</value>
+		</property>
+		<!--链接数据库密码-->
+		<property name="password">
+			<value>${datasource.password}</value>
+		</property>
+		<!--当连接池中的链接耗尽时c3p0一次同时获得的链接是,默认为 3-->
+		<property name="acquireIncrement">
+			<value>${c3p0.acquireIncrement}</value>
+		</property>
+		<!--初始化时一次获得3个连接池取值在minPoolSize和maxPoolSize之间,默认为 3-->
+		<property name="initialPoolSize">
+			<value>${c3p0.initialPoolSize}</value>
+		</property>
+		<!--连接池中保留的最小连接数,默认为 15-->
+		<property name="minPoolSize">
+			<value>${c3p0.minPoolSize}</value>
+		</property>
+		<!--连接池中保留的最大连接数,默认为 15-->
+		<property name="maxPoolSize">
+			<value>${c3p0.maxPoolSize}</value>
+		</property>
+		<!--最大空闲时间,60秒未使用则连接池被丢弃，若为0则永远不丢弃,默认为 0-->
+		<property name="maxIdleTime">
+			<value>${c3p0.maxIdleTime}</value>
+		</property>
+		<!--每秒检查连接池中的空闲链接数，默认为 0-->
+		<property name="idleConnectionTestPeriod">
+			<value>${c3p0.idleConnectionTestPeriod}</value>
+		</property>
+		<!--
+			JDBC的标准参数，用于控制数据源内加载的PreparedStatements的数量
+			但由于缓存中的Statemnts属于单个的connection而不是整个的连接池,所以设置
+			这个参数需要考虑多方面的因素，如果maxStatements为0怎连接池被关闭，默认为 0
+		-->
+		<property name="maxStatements">
+			<value>${c3p0.maxStatements}</value>
+		</property>
+		<!--
+			c3p0为异步操作，缓存的JDBC通过帮助进程来完成,扩展这些操作有利于提高系统功能， 通过线程实行多个操作同时被执行
+		-->
+		<property name="numHelperThreads">
+			<value>${c3p0.numHelperThreads}</value>
+		</property>
+	</bean>
+
+	<!-- 配置Hibernate中的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 引入数据源 -->
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<!-- 配置Hibernate对应的映射资源 -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/cissst/entity/</value>
+			</list>
+		</property>
+		<!-- 配置Hibernate的属性，包括断言(方言)，show_sql等 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.jdbc.fetch_size">
+					${hibernate.jdbc.fetch_size}
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					${hibernate.jdbc.batch_size}
+				</prop>
+				<prop key="hibernate.connection.release_mode">
+					${hibernate.connection.release_mode}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<!--事务管理	
+		定义了一些用来让应用服务器管理事务的方法-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!--
+		切面和切点的配置，有关信息参见spring的官方文档(2.3.面向切面编程(AOP)章节和以前发给同学们的spring五种配置方式word文档，具体含义和考试管理平台
+
+		中spring架构的配置一样)
+	-->
+	<!-- 使用ASpectJ语法定义PointCut -->
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* com.cissst.iDao.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+	</aop:config>
+	<!--hibernate操作数据库的模板类-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--以上为公共配置不允许随意修改-->
+	<!--以下各个模块之间为数据访问层的配置-->
+	<bean id="iAchievementMangerDao" class="com.cissst.iDao.IAchievementMangerDao"
+		parent="hibernateTemplate" />
+	<bean id="iClassMangerDao" class="com.cissst.iDao.IClassMangerDao"
+		parent="hibernateTemplate" />
+	<bean id="iExampaperManagerDao" class="com.cissst.iDao.IExampaperManagerDao"
+		parent="hibernateTemplate" />
+	<bean id="iExamPlanMangerDao" class="com.cissst.iDao.IExamPlanMangerDao"
+		parent="hibernateTemplate" />
+	<bean id="iExamSchemeMangerDao" class="com.cissst.iDao.IExamSchemeMangerDao"
+		parent="hibernateTemplate" />
+	<bean id="iIndexMangerDao" class="com.cissst.iDao.IIndexMangerDao"
+		parent="hibernateTemplate" />
+	<bean id="iSysMangerDao" class="com.cissst.iDao.ISysMangerDao"
+		parent="hibernateTemplate" />
+	<!--以下各个模块之间为业务逻辑层的配置-->
+	<bean id="iAchievementMangerService" class="com.cissst.iService.IAchievementMangerService">
+		<property name="iAchievementMangerDao" ref="iAchievementMangerDao" />
+	</bean>
+	<bean id="iClassMangerService" class="com.cissst.iService.IClassMangerService">
+		<property name="classMangerDao" ref="iClassMangerDao" />
+	</bean>
+	<bean id="iExampaperManagerService" class="com.cissst.iService.IExampaperManagerService">
+		<property name="exampaperManagerDao" ref="iExampaperManagerDao" />
+	</bean>
+	<bean id="iExamPlanMangerService" class="com.cissst.iService.IExamPlanMangerService">
+		<property name="examPlanMangerDao" ref="iExamPlanMangerDao" />
+	</bean>
+	<bean id="iExamSchemeMangerService" class="com.cissst.iService.IExamSchemeMangerService">
+		<property name="examSchemeMangerDao" ref="iExamSchemeMangerDao" />
+	</bean>
+	<bean id="indexMangerService" class="com.cissst.iService.IIndexMangerService">
+		<property name="indexMangerDao" ref="iIndexMangerDao" />
+	</bean>
+	<bean id="iSysMangerService" class="com.cissst.iService.ISysMangerService">
+		<property name="sysMangerDao" ref="iSysMangerDao" />
+	</bean>
+	<!--以下各个模块之间为数据展现层的配置-->
+	<bean id="achievementMangerAction" class="com.cissst.action.AchievementMangerAction">
+		<property name="achievementMangerService" ref="iAchievementMangerService" />
+	</bean>
+	<bean id="classMangerAction" class="com.cissst.action.ClassMangerAction">
+		<property name="classMangerService" ref="iClassMangerService" />
+	</bean>
+	<bean id="exampaperManagerAction" class="com.cissst.action.ExampaperManagerAction">
+		<property name="exampaperManagerService" ref="iExampaperManagerService" />
+	</bean>
+	<bean id="examPlanMangerAction" class="com.cissst.action.ExamPlanMangerAction">
+		<property name="examPlanMangerService" ref="iExamPlanMangerService" />
+	</bean>
+	<bean id="examSchemeMangerAction" class="com.cissst.action.ExamSchemeMangerAction">
+		<property name="examSchemeMangerService" ref="iExamSchemeMangerService" />
+	</bean>
+	<bean id="indexMangerAction" class="com.cissst.action.IndexMangerAction">
+		<property name="indexMangerService" ref="indexMangerService" />
+	</bean>
+	<bean id="sysMangerAction" class="com.cissst.action.SysMangerAction">
+		<property name="sysMangerService" ref="iSysMangerService" />
+	</bean>
+</beans>

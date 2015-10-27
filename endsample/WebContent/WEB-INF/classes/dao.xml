@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<section name="DAO">
+		<entry key="cn.javass.web.endsample.back.goods.dao.dao.GoodsDAO"
+			value="cn.javass.web.endsample.back.goods.dao.impl.jdbcImpl" />
+		<!--可以配置多个entry，对于不同的数据库实现给出多个不同的实现方法，
+			做到底层实现的可配性，灵活性大大增加 
+		<entry key="net.wanjin.lab.persistence.dao.iface.PromotionDAO"
+			value="net.wanjin.lab.persistence.dao.impl.PromotionDAOImp_Mysql" />
+		 -->
+	</section>
+</configuration>

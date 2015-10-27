@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbThemeType" table="tb_theme_type">
+        <id name="themeTypeId" type="java.lang.Integer">
+            <column name="theme_type_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbDel" class="com.cissst.entity.TbDel" fetch="select" lazy="false">
+            <column name="del_tb_id" />
+        </many-to-one>
+        <property name="thetypeId" type="java.lang.String">
+            <column name="thetype_id" />
+        </property>
+        <property name="thetypeName" type="java.lang.String">
+            <column name="thetype_name" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" />
+        </property>
+        <set name="tbPolicies" inverse="true">
+            <key>
+                <column name="theme_type_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbPolicy" />
+        </set>
+        <set name="tbThemes" inverse="true">
+            <key>
+                <column name="theme_type_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTheme" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl">
+		</property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+	<!-- 设定sessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 设定transcationManager -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>	
+	<!-- 设定hibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 公共模块的Ioc/DI配置（表现层，逻辑层，数据层） -->
+	<bean id="examDao" class="com.tmh.exam.comm.daoimpl.ExamDaoImpl">
+		<property name="sessionFactory">
+			<ref local="sessionFactory"/>
+		</property>
+		<property name="ptransactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="examService" class="com.tmh.exam.comm.serviceimpl.ExamServiceImpl">
+		<property name="ed">
+			<ref bean="examDao"/>
+		</property>
+	</bean>
+	<!-- 试题模块（ExamTheme的Ioc/DI配置（表现层，逻辑层，数据层） -->
+	<bean id="examThemeDao" class="com.tmh.exam.theme.daoimpl.ExamThemeDaoImpl" parent="examDao">
+		<property name="sessionFactory">
+			<ref local="sessionFactory"/>
+		</property>
+		<property name="ptransactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="examThemeService" class="com.tmh.exam.theme.serviceimpl.ExamThemeServiceImpl" parent="examService">
+		<property name="etd">
+			<ref bean="examThemeDao"/>
+		</property>
+	</bean>
+	<bean id="exampaperManagerAction" class="com.tmh.exam.theme.action.ExampaperManagerAction">
+		<property name="ets">
+			<ref bean="examThemeService"/>
+		</property>
+	</bean>
+	</beans>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="com.cissst.action.ExampaperManagerAction" namespace="/" extends="json-default">
+	
+		<action name="themeareaAjax" class="exampaperManagerAction" method="ajaxQueryArea">
+			<result type="json">
+				<param name="root">ajaxResultArea</param>
+			</result>
+		</action>                         
+		<action name="themetypeAjax" class="exampaperManagerAction" method="ajaxQueryType">
+			<result type="json">
+				<param name="root">ajaxResultType</param>
+			</result>
+		</action>
+		<action name="themedifAjax" class="exampaperManagerAction" method="ajaxQueryDifficulty">
+			<result type="json">
+				<param name="root">ajaxResultDif</param>
+			</result>
+		</action>
+		<action name="toList" class="exampaperManagerAction" method="toList">
+			<result name="toChoice">/quesLib/quesLibAdd2.jsp</result>
+			<result name="toText">/quesLib/quesLibAdd4.jsp</result>
+		</action>
+	
+		<action name="toaddthemeAnswer" class="exampaperManagerAction" method="toaddThemeAnswer">
+			<result>/quesLib/quesLibAdd3.jsp</result>
+		</action>
+		<action name="addthemeAnswer" class="exampaperManagerAction" method="addThemeAnswer">
+			<result>/quesLib/quesLibAdd3.jsp</result>
+		</action>
+		<action name="getallAnswer" class="exampaperManagerAction" method="getAllAnswer">
+			<result name="addAnswer">/quesLib/quesLibAdd2.jsp</result>
+			<result name="queryAnswer">/quesLib/quesLibQuery2.jsp</result>
+		</action>
+		<action name="deleteAnswer" class="exampaperManagerAction" method="deleteTheAnswer">
+			<result name="addAnswer">/quesLib/quesLibAdd2.jsp</result>
+			<result name="queryAnswer">/quesLib/quesLibQuery2.jsp</result>
+		</action>
+		<action name="saveTheme" class="exampaperManagerAction" method="saveTheme">
+			<result>/quesLib/quesLibAdd2.jsp</result>
+		</action>
+		<action name="savequeTheme" class="exampaperManagerAction" method="saveQueTheme">
+			<result>/quesLib/quesLibAdd4.jsp</result>
+		</action>
+		<action name="commitTheme" class="exampaperManagerAction" method="commitTheme">
+			<result>/quesLib/quesLibAdd.jsp</result>
+		</action>
+		<action name="commitqueTheme" class="exampaperManagerAction" method="commitQueTheme">
+			<result>/quesLib/quesLibAdd.jsp</result>
+		</action>
+		<action name="queryTheme" class="exampaperManagerAction" method="queryTheTheme">
+			<result name="tocancel">/quesLib/quesLibCancel.jsp</result>
+			<result name="toquery">/quesLib/quesLibQuery.jsp</result>
+			<result name="toaudit">/quesLib/quesLibAudit.jsp</result>
+		</action>
+		<action name="toDisplay" class="exampaperManagerAction" method="toTheDisplay">
+			<result name="tomaintain">/quesLib/quesLibQuery3.jsp</result>
+			<result name="tocheck">/quesLib/quesLibQuery2.jsp</result>
+		</action>
+		<action name="deleteTheme" class="exampaperManagerAction" method="deleteTheme">
+			<result>/quesLib/quesLibQuery.jsp</result>
+		</action>
+		<action name="themeUpdateSave" class="exampaperManagerAction" method="themeUpdateSave">
+			<result>/quesLib/quesLibQuery2.jsp</result>
+		</action>
+		<action name="themeUpdateCommit" class="exampaperManagerAction" method="themeUpdateCommit">
+			<result>/quesLib/quesLibQuery.jsp</result>
+		</action>
+		<action name="toAudDisplay" class="exampaperManagerAction" method="toAudDisplay">
+			<result>/quesLib/quesLibAudit2.jsp</result>
+		</action>
+		<action name="audTheme" class="exampaperManagerAction" method="audTheme">
+			<result>/quesLib/quesLibAudit.jsp</result>
+		</action>
+		<action name="audThemeRe" class="exampaperManagerAction" method="audThemeRe">
+			<result>/quesLib/quesLibAudit.jsp</result>
+		</action>
+		<action name="toCancleDisplay" class="exampaperManagerAction" method="toCancleDisplay">
+			<result name="toChoice">/quesLib/quesLibCancel2.jsp</result>
+			<result>/quesLib/quesLibCancel3.jsp</result>
+		</action>
+		<action name="cancleTheme" class="exampaperManagerAction" method="cancleTheme">
+			<result>/quesLib/quesLibCancel.jsp</result>
+		</action>
+		<action name="toback" class="exampaperManagerAction" method="toBack">
+			<result name="tocancel">/quesLib/quesLibCancel.jsp</result>
+			<result name="toaudit">/quesLib/quesLibCancel.jsp</result>
+			<result name="toquery">/quesLib/quesLibQuery.jsp</result>
+			<result name="toadd">/quesLib/quesLibAdd.jsp</result>
+		</action>	
+	</package>
+</struts>
